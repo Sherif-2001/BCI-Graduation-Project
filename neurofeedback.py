@@ -48,7 +48,7 @@ SHIFT_LENGTH = EPOCH_LENGTH - OVERLAP_LENGTH
 # 0 = left ear, 1 = left forehead, 2 = right forehead, 3 = right ear
 INDEX_CHANNEL = [0]
 
-THRESHOLD = 1.5
+THRESHOLD = 1.35
 
 if __name__ == "__main__":
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
             # Compute band powers
             band_powers = utils.compute_band_powers(data_epoch, fs)
             band_buffer, _ = utils.update_buffer(band_buffer,
-                                                 np.asarray([band_powers]))
+                                                np.asarray([band_powers]))
             # Compute the average band powers for all epochs in buffer
             # This helps to smooth out noise
             smooth_band_powers = np.mean(band_buffer, axis=0)
