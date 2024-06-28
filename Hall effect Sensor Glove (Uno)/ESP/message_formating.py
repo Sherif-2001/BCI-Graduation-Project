@@ -24,9 +24,9 @@ FES_HEADER = "FES"
 #====================================================================================================
 FES_PARAM_SUBHEADER = "FES_PARAMS"
 #---------------------------------------------------------------------------------------------------
-FES_ROM_RELEASE_SUBHEADER = "RELEASE_RANGE_OF_MOTION"
-#---------------------------------------------------------------------------------------------------
-FES_ROM_GRASP_SUBHEADER = "GRASP_RANGE_OF_MOTION"
+FES_ROM_SUBHEADER = "RANGE_OF_MOTION"
+FES_ROM_GRASP = 1
+FES_ROM_RELEASE = 0
 #**********************************************************************************************************************************
 
 
@@ -75,34 +75,33 @@ def MessageDecoding(message):
         # Convert the string of numbers into a list of integers
         values = [int(values_str.strip())]
         
-    print(f"{header}: {sub_header}: {values}")
+    print(f"{header}: {sub_header}; {values}")
     
     return header, sub_header, values
 
 # angles =  [0, 1, 2, 3, 4]
 # state = GLOVE_STATE_GRASP
 # channel = GLOVE_CHANNEL_GRASP
-# 
+
 # decision = MASTER_DECISION_GRASP
 # init_fes = 50
-# 
+
 # fes_param = 30
-# release_rom = 10
-# grasp_rom = 20
-# 
+# rom = FES_ROM_GRASP
+
 # print("-------------------Encoding----------------------")
 # message1 = MessageEncoding (GLOVE_HEADER, GLOVE_ANGLES_SUBHEADER, angles)
 # message2 = MessageEncoding (GLOVE_HEADER, GLOVE_STATE_SUBHEADER, state)
 # message3 = MessageEncoding (GLOVE_HEADER, GLOVE_CHANNEL_SUBHEADER, channel)
-# 
+
 # message4 = MessageEncoding(MASTER_HEADER, MASTER_DECISION_SUBHEADER, decision)
 # message5 = MessageEncoding(MASTER_HEADER, MASTER_INITIAL_FES_SUBHEADER, init_fes)
-# 
+
 # message6 = MessageEncoding(FES_HEADER, FES_PARAM_SUBHEADER, fes_param)
-# message7 = MessageEncoding(FES_HEADER, FES_ROM_GRASP_SUBHEADER, release_rom)
-# message8 = MessageEncoding(FES_HEADER, FES_ROM_RELEASE_SUBHEADER, grasp_rom)
-# 
-# 
+# message7 = MessageEncoding(FES_HEADER, FES_ROM_SUBHEADER, rom)
+
+
+
 # print("-------------------Decoding----------------------")
 # MessageDecoding(message1)
 # MessageDecoding(message2)
@@ -111,6 +110,5 @@ def MessageDecoding(message):
 # MessageDecoding(message5)
 # MessageDecoding(message6)
 # MessageDecoding(message7)
-# MessageDecoding(message8)
 
 
