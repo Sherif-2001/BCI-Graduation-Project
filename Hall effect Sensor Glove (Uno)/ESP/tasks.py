@@ -36,7 +36,7 @@ async def read_sensors():
         espNow.espNow_activate(False)
         wifi.disconnect_wifi()
         angles = getAllAngles(sensors)
-        shared_message[0] = MessageEncoding("GLOVE", angles)
+        shared_message[0] = MessageEncoding("GLOVE", GLOVE_ANGLES_SUBHEADER, angles)
 #         print(f"message var: {shared_message[0]}")
         end_time = time.ticks_ms()  # Record the end time
         elapsed_time = time.ticks_diff(end_time, start_time)  # Calculate elapsed time
@@ -59,7 +59,7 @@ async def send_tcp():
 #         print("Sending TCP:", shared_message[0])
         server.TCP_SendMessage(shared_message[0])
         message = server.TCP_ReceiveMessage()
-        sender, anglesList = MessageDecoding(message)
+        sender, task, state = MessageDecoding(message)
 #         print(f"Sender : {sender}")
 #         print(f"Angles : {anglesList}")
         await asyncio.sleep(0.02)  # Adjust the timing as needed
