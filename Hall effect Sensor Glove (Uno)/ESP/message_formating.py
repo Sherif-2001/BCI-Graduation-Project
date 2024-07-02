@@ -62,14 +62,9 @@ def MessageDecoding(message):
 
 
     if sub_header == GLOVE_ANGLES_SUBHEADER:
-        # Remove brackets if present and convert the string of numbers into a list of integers
-        for num in values_str:
-            if num == '[' or num == ',' or num == ' ':
-                continue
-            elif num == ']':
-                break
-            else:
-                values.append(int(num))
+       # Remove brackets and convert the string of numbers into a list of integers
+        values_str = values_str.strip()[1:-1]  # Strip brackets
+        values = [int(num.strip()) for num in values_str.split(",")]
     
     else:
         # Convert the string of numbers into a list of integers
