@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>727</width>
-    <height>692</height>
+    <height>697</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -95,54 +95,9 @@ font: 700 16pt; </string>
                   <widget class="QWidget" name="widget_20" native="true">
                    <layout class="QVBoxLayout" name="verticalLayout_14">
                     <item>
-                     <widget class="QTextEdit" name="g_fes_sc_input">
-                      <property name="minimumSize">
-                       <size>
-                        <width>115</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>115</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <stylestrategy>PreferDefault</stylestrategy>
-                        <kerning>true</kerning>
-                       </font>
-                      </property>
-                      <property name="cursor" stdset="0">
-                       <cursorShape>ArrowCursor</cursorShape>
-                      </property>
-                      <property name="contextMenuPolicy">
-                       <enum>Qt::DefaultContextMenu</enum>
-                      </property>
-                      <property name="acceptDrops">
-                       <bool>true</bool>
-                      </property>
-                      <property name="toolTip">
-                       <string/>
-                      </property>
-                      <property name="statusTip">
-                       <string/>
-                      </property>
-                      <property name="layoutDirection">
-                       <enum>Qt::LeftToRight</enum>
-                      </property>
-                      <property name="autoFillBackground">
-                       <bool>false</bool>
-                      </property>
-                      <property name="verticalScrollBarPolicy">
-                       <enum>Qt::ScrollBarAlwaysOff</enum>
-                      </property>
-                      <property name="sizeAdjustPolicy">
-                       <enum>QAbstractScrollArea::AdjustIgnored</enum>
-                      </property>
-                      <property name="markdown">
-                       <string/>
+                     <widget class="QSpinBox" name="g_fes_sc_input">
+                      <property name="maximum">
+                       <number>80</number>
                       </property>
                      </widget>
                     </item>
@@ -229,21 +184,9 @@ font: 700 16pt; </string>
                   <widget class="QWidget" name="widget_18" native="true">
                    <layout class="QVBoxLayout" name="verticalLayout_16">
                     <item>
-                     <widget class="QTextEdit" name="r_fes_sc_input">
-                      <property name="minimumSize">
-                       <size>
-                        <width>115</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>115</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="verticalScrollBarPolicy">
-                       <enum>Qt::ScrollBarAlwaysOff</enum>
+                     <widget class="QSpinBox" name="r_fes_sc_input">
+                      <property name="maximum">
+                       <number>80</number>
                       </property>
                      </widget>
                     </item>
