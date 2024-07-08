@@ -26,7 +26,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="sc_tab">
        <property name="font">
@@ -876,6 +876,24 @@ font: 700 16pt; </string>
             </widget>
            </item>
           </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+border-radius:15;
+background-color:rgb(0, 150, 0);
+color:rgb(255, 255, 255);
+font: 25pt &quot;Forte&quot;;
+}
+QPushButton:hover{
+background-color:rgb(0, 194, 0);
+}</string>
+          </property>
+          <property name="text">
+           <string>Add Report</string>
+          </property>
          </widget>
         </item>
        </layout>
