@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>727</width>
-    <height>662</height>
+    <height>678</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,35 +19,8 @@ color:rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="3" column="3">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Gender:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="3">
-     <widget class="QRadioButton" name="radioButton">
-      <property name="text">
-       <string>Male</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0" colspan="6">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="13" column="0" colspan="2">
-     <widget class="QTextEdit" name="textEdit_6">
+    <item row="7" column="3" colspan="2">
+     <widget class="QTextEdit" name="textEdit_4">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -62,205 +35,48 @@ color:rgb(255, 255, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
+border-radius:5px;
+color: rgb(0,0,0);</string>
       </property>
      </widget>
     </item>
-    <item row="12" column="3">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>Height:</string>
+    <item row="2" column="0" colspan="6">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
-     </widget>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
     </item>
-    <item row="16" column="0">
-     <widget class="QRadioButton" name="radioButton_3">
+    <item row="8" column="0" colspan="6">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="16" column="3">
+     <widget class="QRadioButton" name="radioButton_6">
       <property name="text">
        <string>Right</string>
       </property>
      </widget>
     </item>
-    <item row="11" column="0" colspan="6">
-     <spacer name="horizontalSpacer_4">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="21" column="0" colspan="2">
-     <widget class="QLabel" name="label_14">
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Notes:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="0" colspan="2">
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>National ID:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="1">
-     <widget class="QRadioButton" name="radioButton_4">
-      <property name="text">
-       <string>Left</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Last Name:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="4" colspan="2">
-     <widget class="QRadioButton" name="radioButton_2">
-      <property name="text">
-       <string>Female</string>
-      </property>
-     </widget>
-    </item>
-    <item row="15" column="3" colspan="2">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>Affacted Hand:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="18" column="3" colspan="3">
-     <widget class="QLabel" name="label_15">
-      <property name="text">
-       <string>Object Shape:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="22" column="0" colspan="6">
-     <widget class="QTextEdit" name="textEdit_10">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="23" column="0" colspan="6">
-     <spacer name="horizontalSpacer_8">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="1" column="3" colspan="2">
-     <widget class="QTextEdit" name="textEdit_2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>2</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>First Name:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="17" column="0" colspan="6">
-     <spacer name="horizontalSpacer_6">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="6" column="3" colspan="2">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Mobile Number:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="15" column="0" colspan="2">
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>Dominant Hand:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0" colspan="2">
-     <widget class="QDateEdit" name="dateEdit">
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(75, 75, 75);
-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="19" column="0" colspan="2">
-     <widget class="QTextEdit" name="textEdit_9">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="4" colspan="2">
-     <widget class="QRadioButton" name="radioButton_5">
-      <property name="text">
-       <string>Left</string>
+       <string>Adress:</string>
       </property>
      </widget>
     </item>
@@ -280,189 +96,8 @@ border-radius:5px;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="20" column="0" colspan="6">
-     <spacer name="horizontalSpacer_7">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="18" column="0" colspan="2">
-     <widget class="QLabel" name="label_13">
-      <property name="text">
-       <string>Disease:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="3">
-     <widget class="QRadioButton" name="radioButton_6">
-      <property name="text">
-       <string>Right</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0" colspan="2">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>Phone Number:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Adress:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0" colspan="6">
-     <spacer name="horizontalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="14" column="0" colspan="6">
-     <spacer name="horizontalSpacer_5">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Age:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="3" colspan="2">
-     <widget class="QTextEdit" name="textEdit_4">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="3">
-     <widget class="QTextEdit" name="textEdit_7">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="4">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>Weight:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="19" column="3" colspan="3">
-     <widget class="QComboBox" name="comboBox">
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(75, 75, 75);
-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0" colspan="6">
-     <widget class="QTextEdit" name="textEdit_5">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="6">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>5</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="7" column="0" colspan="2">
-     <widget class="QTextEdit" name="textEdit_3">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
+border-radius:5px;
+color: rgb(0,0,0);</string>
       </property>
      </widget>
     </item>
@@ -488,7 +123,228 @@ border-radius:5px;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0" colspan="2">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Phone Number:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" colspan="2">
+     <widget class="QTextEdit" name="textEdit_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>2</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="3" colspan="3">
+     <widget class="QComboBox" name="comboBox">
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(75, 75, 75);
+</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Ball</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Bottle</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Pen</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Key</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="19" column="0" colspan="2">
+     <widget class="QTextEdit" name="textEdit_9">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0" colspan="2">
+     <widget class="QTextEdit" name="textEdit_3">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0" colspan="6">
+     <spacer name="horizontalSpacer_5">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="6" column="3" colspan="2">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Mobile Number:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="0" colspan="2">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Dominant Hand:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Last Name:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="3" colspan="3">
+     <widget class="QLabel" name="label_15">
+      <property name="text">
+       <string>Object Shape:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0" colspan="6">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="12" column="4">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>Weight:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="0">
+     <widget class="QRadioButton" name="radioButton_3">
+      <property name="text">
+       <string>Right</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QRadioButton" name="radioButton">
+      <property name="text">
+       <string>Male</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4" colspan="2">
+     <widget class="QRadioButton" name="radioButton_2">
+      <property name="text">
+       <string>Female</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Date of Birth:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="21" column="0" colspan="2">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>Notes:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0" colspan="6">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>First Name:</string>
       </property>
      </widget>
     </item>
@@ -507,6 +363,180 @@ background-color:rgb(67, 183, 255);
       </property>
       <property name="text">
        <string>Submit</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="0" colspan="2">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>Disease:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="3">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Height:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="23" column="0" colspan="6">
+     <spacer name="horizontalSpacer_8">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="10" column="0" colspan="6">
+     <widget class="QTextEdit" name="textEdit_5">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0" colspan="2">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>National ID:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="0" colspan="6">
+     <spacer name="horizontalSpacer_6">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="13" column="3">
+     <widget class="QTextEdit" name="textEdit_7">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="22" column="0" colspan="6">
+     <widget class="QTextEdit" name="textEdit_10">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="4" colspan="2">
+     <widget class="QRadioButton" name="radioButton_5">
+      <property name="text">
+       <string>Left</string>
+      </property>
+     </widget>
+    </item>
+    <item row="20" column="0" colspan="6">
+     <spacer name="horizontalSpacer_7">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Gender:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="3" colspan="2">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>Affacted Hand:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0" colspan="2">
+     <widget class="QTextEdit" name="textEdit_6">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;
+color: rgb(0,0,0);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="2">
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(75, 75, 75);
+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="1">
+     <widget class="QRadioButton" name="radioButton_4">
+      <property name="text">
+       <string>Left</string>
       </property>
      </widget>
     </item>
