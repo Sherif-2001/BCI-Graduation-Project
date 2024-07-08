@@ -1,11 +1,15 @@
 # patients.py
 from PyQt5 import QtCore, QtGui, QtWidgets
+from newpatient import NewPatientMainWindow
 
 class PatientsMainWindow(QtWidgets.QMainWindow):
     go_back = QtCore.pyqtSignal()
     go_to_calibration = QtCore.pyqtSignal()
     go_to_session = QtCore.pyqtSignal()
-    go_to_new_patient = QtCore.pyqtSignal()
+
+    open_calibration = QtCore.pyqtSignal()
+    open_session = QtCore.pyqtSignal()
+    open_new_patient = QtCore.pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -14,8 +18,8 @@ class PatientsMainWindow(QtWidgets.QMainWindow):
         self.ui.menuBack.triggered.connect(self.go_back.emit)
         self.ui.pushButton_3.clicked.connect(self.go_to_calibration.emit)
         self.ui.pushButton_2.clicked.connect(self.go_to_session.emit)
+        self.ui.pushButton.clicked.connect(self.open_new_patient.emit)
 
-        self.ui.pushButton.clicked.connect(self.go_to_new_patient.emit)
 
 
 class Ui_PatientsMainWindow(object):
