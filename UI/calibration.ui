@@ -332,15 +332,7 @@ font: 700 16pt; </string>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_19">
-                    <item>
-                     <widget class="QLabel" name="releasing_glove_sc_value_label">
-                      <property name="text">
-                       <string>In Progress</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
+                   <layout class="QVBoxLayout" name="verticalLayout_19"/>
                   </widget>
                  </item>
                 </layout>
@@ -359,6 +351,13 @@ font: 700 16pt; </string>
            <item>
             <widget class="QWidget" name="widget_8" native="true">
              <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QLabel" name="releasing_glove_sc_value_label">
+                <property name="text">
+                 <string>In Progress</string>
+                </property>
+               </widget>
+              </item>
               <item>
                <widget class="QWidget" name="widget_25" native="true">
                 <property name="sizePolicy">
@@ -420,6 +419,38 @@ font: 700 16pt; </string>
            </sizepolicy>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <spacer name="horizontalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+background-color:rgb(120,120, 120);
+border-radius:15;
+color:rgb(255, 255, 255);
+font: 25pt &quot;Forte&quot;;
+}
+QPushButton:hover{
+background-color:rgb(70, 70, 70);
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
@@ -852,37 +883,6 @@ font: 700 16pt; </string>
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>727</width>
-     <height>38</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QMenuBar {
-    color:rgb(255, 255, 255);
-    font: 585 15pt; 
-}
-QMenuBar::item {
-    background-color: #444444;
-    color: white;
-    padding: 5px 10px;
-}
-QMenuBar::item:selected { /* when mouse hover */
-    background-color: #A9A9A9;
-}
-</string>
-   </property>
-   <widget class="QMenu" name="menuBack">
-    <property name="title">
-     <string>Back</string>
-    </property>
-   </widget>
-   <addaction name="menuBack"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
