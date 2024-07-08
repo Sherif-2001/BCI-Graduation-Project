@@ -1,7 +1,7 @@
 # main.py
 from PyQt5 import QtWidgets, QtCore
 from login import LoginPageMainWindow
-from patients import PatientsMainWindow
+from Navigation.old_patients2 import PatientsMainWindow
 
 class MainController(QtCore.QObject):
     def __init__(self):
