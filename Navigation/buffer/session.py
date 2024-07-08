@@ -13,9 +13,11 @@ from matplotlib.figure import Figure
 
 sns.set(style="whitegrid")
 
-class Ui_MainWindow(QtWidgets.QWidget):
+class Ui_MainWindow(object):
     go_back = QtCore.pyqtSignal()
     go_to_automation = QtCore.pyqtSignal()
+    
+
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -106,14 +108,18 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.gridLayout_3.addItem(spacerItem4, 4, 0, 1, 1)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_3.addItem(spacerItem5, 3, 0, 1, 1)
-
-        # Add matplotlib canvas here
-        self.fig = Figure(figsize=(5, 4), dpi=100)
-        self.canvas = FigureCanvas(self.fig)
-        self.axes = self.fig.add_subplot(111)
-
-        self.gridLayout_3.addWidget(self.canvas, 2, 0, 1, 3)
-
+        self.EEGpLotwidget = QtWidgets.QWidget(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(2)
+        sizePolicy.setHeightForWidth(self.EEGpLotwidget.sizePolicy().hasHeightForWidth())
+        self.EEGpLotwidget.setSizePolicy(sizePolicy)
+        self.EEGpLotwidget.setMinimumSize(QtCore.QSize(352, 111))
+        self.EEGpLotwidget.setSizeIncrement(QtCore.QSize(1, 1))
+        self.EEGpLotwidget.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+"border-radius:5px;")
+        self.EEGpLotwidget.setObjectName("EEGpLotwidget")
+        self.gridLayout_3.addWidget(self.EEGpLotwidget, 2, 0, 1, 3)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -128,7 +134,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.pushButton.setText(_translate("MainWindow", "Back"))
         self.label.setText(_translate("MainWindow", "The session has not started yet"))
         self.pushButton_2.setText(_translate("MainWindow", "Record"))
-        self.label_2.setText(_translate("MainWindow", "Patient Name:"))
+        self.label_2.setText(_translate("MainWindow", "Pateint Name:"))
         self.label_3.setText(_translate("MainWindow", "Name"))
 
 class LSLViewer():
@@ -212,7 +218,7 @@ class LSLViewer():
                 self.n_samples = int(self.sfreq * self.window)
                 self.times = self.times[-self.n_samples:]
                 self.data = np.vstack([self.data, samples])
-                self.data = self.data[-(self.n_samples):]
+                self.data = self.data[-self.n_samples:]
                 filt_samples, self.filt_state = lfilter(
                     self.bf, self.af,
                     samples,

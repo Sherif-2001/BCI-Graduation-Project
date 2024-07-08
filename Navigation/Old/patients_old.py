@@ -1,19 +1,4 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import pyrebase
-
-config = {
-    "apiKey": "AIzaSyBaf2PZ9lRnkpM952pBDlfGCxxEjcvU4Bk",
-    "authDomain": "fes-controller.firebaseapp.com",
-    "databaseURL": "https://fes-controller-default-rtdb.firebaseio.com",
-    "projectId": "fes-controller",
-    "storageBucket": "fes-controller.appspot.com",
-    "messagingSenderId": "341771619246",
-    "appId": "1:341771619246:web:29d7cc61c889b3228a163f",
-}
-
-# Initialize Firebase
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
 
 class PatientsMainWindow(QtWidgets.QMainWindow):
     go_back = QtCore.pyqtSignal()
@@ -29,8 +14,6 @@ class PatientsMainWindow(QtWidgets.QMainWindow):
         self.ui.pushButton_3.clicked.connect(self.go_to_calibration.emit)
         self.ui.pushButton_2.clicked.connect(self.go_to_session.emit)
         self.ui.pushButton.clicked.connect(self.go_to_new_patient.emit)
-
-
 
 
 class Ui_PatientsMainWindow(object):
@@ -223,7 +206,6 @@ class Ui_PatientsMainWindow(object):
                                     "")
         self.comboBox.setCurrentText("")
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.currentIndexChanged.connect(self.load_patient_data)
         self.gridLayout.addWidget(self.comboBox, 0, 0, 1, 8)
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_4.setStyleSheet("QPushButton{\n"
@@ -242,8 +224,6 @@ class Ui_PatientsMainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(PatientsMainWindow)
         self.statusbar.setObjectName("statusbar")
         PatientsMainWindow.setStatusBar(self.statusbar)
-
-        self.load_patients()
 
         self.retranslateUi(PatientsMainWindow)
         QtCore.QMetaObject.connectSlotsByName(PatientsMainWindow)
@@ -280,38 +260,10 @@ class Ui_PatientsMainWindow(object):
         self.label_12.setText(_translate("PatientsMainWindow", "Mobile Number"))
         self.pushButton_4.setText(_translate("PatientsMainWindow", "Back"))
 
-    def load_patients(self):
-        patients = db.child("patients").get()
-        self.comboBox.addItem("")
-        if patients.each():
-            for patient in patients.each():
-                self.comboBox.addItem(patient.key())
-
-    def load_patient_data(self):
-        patient_name = self.comboBox.currentText()
-        patient_data = db.child("patients").child(patient_name).get()
-        if patient_data.val():
-            data = patient_data.val()
-            self.label_3.setText(data.get("Name", "N/A"))
-            self.label_6.setText(data.get("DOB", "N/A"))
-            self.label_8.setText(data.get("Gender", "N/A"))
-            self.label_10.setText(data.get("PhoneNum", "N/A"))
-            self.label_12.setText(data.get("MobileNum", "N/A"))
-            self.label_14.setText(data.get("Address", "N/A"))
-            self.label_16.setText(data.get("NationalId", "N/A"))
-            self.label_25.setText(data.get("Height", "N/A"))
-            self.label_23.setText(data.get("Weight", "N/A"))
-            self.label_20.setText(data.get("DominantHand", "N/A"))
-            self.label_26.setText(data.get("AffectedHand", "N/A"))
-            self.label_18.setText(data.get("Disease", "N/A"))
-
 
 if __name__ == "__main__":
     import sys
-
     app = QtWidgets.QApplication(sys.argv)
-    PatientsPageMainWindow = QtWidgets.QMainWindow()
-    ui = Ui_PatientsMainWindow()
-    ui.setupUi(PatientsPageMainWindow)
-    PatientsPageMainWindow.show()
+    PatientsMainWindow = PatientsMainWindow()
+    PatientsMainWindow.show()
     sys.exit(app.exec_())

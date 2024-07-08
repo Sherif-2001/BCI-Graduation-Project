@@ -1,26 +1,14 @@
+# main.py
 from PyQt5 import QtWidgets, QtCore
 from login import LoginPageMainWindow
 from patients import PatientsMainWindow
 from calibration_screen import MainWindowApp as CalibrationMainWindow
 from session import Ui_MainWindow as SessionMainWindow
-from session import LSLViewer
 
 from record_automation import Ui_MainWindow as AutomationMainWindow
 
 from newpatient import NewPatientMainWindow
 
-import sys
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.signal import lfilter, lfilter_zi, firwin
-from time import sleep
-from pylsl import StreamInlet, resolve_stream
-from optparse import OptionParser
-import seaborn as sns
-from threading import Thread
-from PyQt5 import QtCore, QtGui, QtWidgets
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
 
 class MainController(QtCore.QObject):
     def __init__(self):
@@ -33,17 +21,6 @@ class MainController(QtCore.QObject):
         self.session_ui = SessionMainWindow()
         self.session_ui.setupUi(self.session_window)
 
-        # Stream for session_window
-        # Setting up the LSLViewer
-        streams = resolve_stream('type', 'EEG')
-        if len(streams) == 0:
-            raise(RuntimeError("Can't find EEG stream"))
-        lslv = LSLViewer(streams[0], self.session_ui.fig, self.session_ui.axes, window=5, scale=891)
-        
-        # Start the LSLViewer
-        lslv.start()
-
-
         self.new_patient_window = NewPatientMainWindow()
 
         self.automation_window = AutomationMainWindow()
@@ -54,20 +31,21 @@ class MainController(QtCore.QObject):
         self.patients_window.go_back.connect(self.show_login_window)
         self.patients_window.go_to_calibration.connect(self.show_calibration_window)
         self.patients_window.go_to_session.connect(self.show_session_window)
+        # self.session_ui.menuBack.triggered.connect(self.show_patients_window)
         self.patients_window.go_to_new_patient.connect(self.show_new_patient_window)
+
         self.patients_window.go_back.connect(self.show_login_window)
         self.calibration_window.go_back.connect(self.show_patients_window)
-        
-        # Connect signals for session window
+
         self.session_ui.go_back.connect(self.show_patients_window)
-        self.session_ui.go_to_automation.connect(self.start_automation_tasks)
+        self.session_ui.go_to_automation.connect(self.show_automation_window)
+
 
     def show_automation_window(self):
+        # self.session_window.hide()
         self.automation_window.show()
 
-    def start_automation_tasks(self):
-        self.show_automation_window()
-        self.automation_window.show_get_ready()  # Start the automation tasks
+
 
     def show_login_window(self):
         self.calibration_window.hide()

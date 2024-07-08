@@ -15,7 +15,6 @@ from message_formating import *
 
 
 class Ui_MainWindow(object):
-    go_back = QtCore.pyqtSignal()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -310,27 +309,6 @@ class Ui_MainWindow(object):
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
         self.horizontalLayout_4.addItem(spacerItem)
-
-        # new back push button
-
-        self.pushButton = QtWidgets.QPushButton(self.widget_6)
-        self.pushButton.setStyleSheet("QPushButton{\n"
-        "background-color:rgb(120,120, 120);\n"
-        "border-radius:15;\n"
-        "color:rgb(255, 255, 255);\n"
-        "font: 25pt \"Forte\";\n"
-        "}\n"
-        "QPushButton:hover{\n"
-        "background-color:rgb(70, 70, 70);\n"
-        "}\n"
-        "")
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_4.addWidget(self.pushButton)
-        self.pushButton.clicked.connect(self.go_back.emit)
-
-        # End of new back push button
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem1)
         self.sc_start_button = QtWidgets.QPushButton(self.widget_6)
         self.sc_start_button.setStyleSheet(
             "QPushButton{\n"
@@ -348,11 +326,6 @@ class Ui_MainWindow(object):
         spacerItem1 = QtWidgets.QSpacerItem(
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
-
-
-
-
-
         self.horizontalLayout_4.addItem(spacerItem1)
         self.verticalLayout_2.addWidget(self.widget_6)
         self.tabWidget.addTab(self.sc_tab, "")
@@ -591,7 +564,6 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.m_tab, "")
         self.horizontalLayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
-        
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -612,17 +584,10 @@ class Ui_MainWindow(object):
         self.grasping_glove_sc_label.setText(_translate("MainWindow", "Grasping:"))
         self.grasping_glove_sc_value_label.setText(_translate("MainWindow", "Done"))
         self.releasing_glove_sc_label.setText(_translate("MainWindow", "Releasing:"))
-        self.releasing_glove_sc_value_label.setText(
-            _translate("MainWindow", "In Progress")
-        )
+        self.releasing_glove_sc_value_label.setText(_translate("MainWindow", "In Progress"))
         self.instructions_sc_label.setText(_translate("MainWindow", "Instructions"))
-        self.pushButton.setText(_translate("MainWindow", "Back"))
-
         self.sc_start_button.setText(_translate("MainWindow", "     Start     "))
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.sc_tab),
-            _translate("MainWindow", "System Calibration"),
-        )
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.sc_tab), _translate("MainWindow", "System Calibration"))
         self.m_intention_label.setText(_translate("MainWindow", "Patient Intention"))
         self.m_prediction_label.setText(_translate("MainWindow", "Prediction"))
         self.m_fes_label.setText(_translate("MainWindow", "FES"))
@@ -631,14 +596,12 @@ class Ui_MainWindow(object):
         self.m_glove_label.setText(_translate("MainWindow", "Glove"))
         self.m_g_glove_label.setText(_translate("MainWindow", "Grasping"))
         self.m_r_glove_label.setText(_translate("MainWindow", "Releasing"))
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.m_tab), _translate("MainWindow", "Monitor")
-        )
-    
-
-
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.m_tab), _translate("MainWindow", "Monitor"))
 
 class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
+
+    go_back = QtCore.pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -662,6 +625,7 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.glove_currunt_state = GLOVE_STATE_RELEASE
         # Connect the button to the slot
         self.sc_start_button.clicked.connect(self.start)
+        self.pushButton.clicked.connect(self.go_back.emit)
         
     def start(self):
     # Get the values from the input fields
@@ -669,20 +633,6 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.calibrated_releasing_fes_value = self.r_fes_sc_input.value()
         self.set_cv_text_fields()
 
-        # # Create a QTimer for monitoring
-        # self.monitoring_timer = QTimer(self)
-        # # Connect the timeout signal to the update_monitoring function
-        # self.monitoring_timer.timeout.connect(self.update_monitoring)
-        # # Start the timer with a 1000ms interval (1 second)
-        # self.monitoring_timer.start(1000)
-
-        # # Create a QTimer for prediction
-        # self.prediction_timer = QTimer(self)
-        # # Connect the timeout signal to the update_prediction function
-        # self.prediction_timer.timeout.connect(self.update_prediction)
-        # # Start the timer with a 2000ms interval (2 seconds)
-        # self.prediction_timer.start(2000)
-        
         # Create a QTimer for receive
         self.receive_timer = QTimer(self)
         # Connect the timeout signal to the update_prediction function
@@ -727,10 +677,7 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.get_glove_progress()
         
     def get_predicrion(self):
-        # if self.prediction_list[self.counter] == 0:
-            self.m_prediction_label.setText(self.received_message)
-        # if self.prediction_list[self.counter] == 1:
-            # self.m_prediction_label.setText("Releasing")
+        self.m_prediction_label.setText(self.received_message)
             
     def update_prediction(self):
         self.get_predicrion()
@@ -745,12 +692,10 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.rmsg_header, self.rmsg_sub_header, self.rmsg_values = MessageDecoding(self.received_message)
             self.update_monitoring()
             
-    
-        
-        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindowApp()
     main_window.show()
     sys.exit(app.exec_())
+

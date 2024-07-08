@@ -15,8 +15,6 @@ from message_formating import *
 
 
 class Ui_MainWindow(object):
-    go_back = QtCore.pyqtSignal()
-
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
@@ -310,27 +308,6 @@ class Ui_MainWindow(object):
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
         self.horizontalLayout_4.addItem(spacerItem)
-
-        # new back push button
-
-        self.pushButton = QtWidgets.QPushButton(self.widget_6)
-        self.pushButton.setStyleSheet("QPushButton{\n"
-        "background-color:rgb(120,120, 120);\n"
-        "border-radius:15;\n"
-        "color:rgb(255, 255, 255);\n"
-        "font: 25pt \"Forte\";\n"
-        "}\n"
-        "QPushButton:hover{\n"
-        "background-color:rgb(70, 70, 70);\n"
-        "}\n"
-        "")
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_4.addWidget(self.pushButton)
-        self.pushButton.clicked.connect(self.go_back.emit)
-
-        # End of new back push button
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem1)
         self.sc_start_button = QtWidgets.QPushButton(self.widget_6)
         self.sc_start_button.setStyleSheet(
             "QPushButton{\n"
@@ -348,11 +325,6 @@ class Ui_MainWindow(object):
         spacerItem1 = QtWidgets.QSpacerItem(
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
-
-
-
-
-
         self.horizontalLayout_4.addItem(spacerItem1)
         self.verticalLayout_2.addWidget(self.widget_6)
         self.tabWidget.addTab(self.sc_tab, "")
@@ -591,10 +563,31 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.m_tab, "")
         self.horizontalLayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
-        
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 727, 38))
+        self.menubar.setStyleSheet(
+            "QMenuBar {\n"
+            "    color:rgb(255, 255, 255);\n"
+            "    font: 585 15pt; \n"
+            "}\n"
+            "QMenuBar::item {\n"
+            "    background-color: #444444;\n"
+            "    color: white;\n"
+            "    padding: 5px 10px;\n"
+            "}\n"
+            "QMenuBar::item:selected { /* when mouse hover */\n"
+            "    background-color: #A9A9A9;\n"
+            "}\n"
+            ""
+        )
+        self.menubar.setObjectName("menubar")
+        self.menuBack = QtWidgets.QMenu(self.menubar)
+        self.menuBack.setObjectName("menuBack")
+        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.menubar.addAction(self.menuBack.menuAction())
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
@@ -616,8 +609,6 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "In Progress")
         )
         self.instructions_sc_label.setText(_translate("MainWindow", "Instructions"))
-        self.pushButton.setText(_translate("MainWindow", "Back"))
-
         self.sc_start_button.setText(_translate("MainWindow", "     Start     "))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.sc_tab),
@@ -634,6 +625,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.m_tab), _translate("MainWindow", "Monitor")
         )
+        self.menuBack.setTitle(_translate("MainWindow", "Back"))
     
 
 
