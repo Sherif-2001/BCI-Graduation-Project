@@ -523,8 +523,8 @@ background-color:rgb(0, 194, 0);
             <height>0</height>
            </size>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0" colspan="3">
             <widget class="QWidget" name="widget_3" native="true">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -562,55 +562,36 @@ border-radius:5px;</string>
              </layout>
             </widget>
            </item>
-           <item>
-            <widget class="QWidget" name="widget_4" native="true">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
+           <item row="1" column="0">
+            <widget class="QLabel" name="m_intention_label">
              <property name="minimumSize">
               <size>
-               <width>5</width>
+               <width>172</width>
                <height>0</height>
               </size>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_20">
-              <item>
-               <widget class="QLabel" name="m_intention_label">
-                <property name="styleSheet">
-                 <string notr="true">font: 700 16pt; </string>
-                </property>
-                <property name="text">
-                 <string>Patient Intention</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="m_prediction_label">
-                <property name="styleSheet">
-                 <string notr="true">font: 550 12pt; </string>
-                </property>
-                <property name="text">
-                 <string>Prediction</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
+             <property name="maximumSize">
+              <size>
+               <width>170</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 700 16pt; </string>
+             </property>
+             <property name="text">
+              <string>Patient Intention:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="m_prediction_label">
+             <property name="styleSheet">
+              <string notr="true">font: 550 12pt; </string>
+             </property>
+             <property name="text">
+              <string>Prediction</string>
+             </property>
             </widget>
            </item>
           </layout>
