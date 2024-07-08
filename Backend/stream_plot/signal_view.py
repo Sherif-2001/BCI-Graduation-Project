@@ -45,7 +45,7 @@ print("Start aquiring data")
 
 class LSLViewer():
 
-    def __init__(self, stream, fig, axes,  window, scale, dejitter=True):
+    def __init__(self, stream, fig, axes, window, scale, dejitter=True):
         """Init"""
         self.stream = stream
         self.window = window
@@ -164,15 +164,20 @@ class LSLViewer():
     def OnKeypress(self, event):
         if event.key == '/':
             self.scale *= 1.2
+            print(f"Scale increased to: {self.scale}")
         elif event.key == '*':
             self.scale /= 1.2
+            print(f"Scale decreased to: {self.scale}")
         elif event.key == '+':
             self.window += 1
+            print(f"Window increased to: {self.window}")
         elif event.key == '-':
             if self.window > 1:
                 self.window -= 1
+                print(f"Window decreased to: {self.window}")
         elif event.key == 'd':
             self.filt = not(self.filt)
+            print(f"Filter toggled to: {'ON' if self.filt else 'OFF'}")
 
     def start(self):
         self.started = True
