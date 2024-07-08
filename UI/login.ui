@@ -124,7 +124,7 @@ border-radius:10px;</string>
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="textEdit">
+               <widget class="QTextEdit" name="email_field">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -145,7 +145,7 @@ border-radius:10px;</string>
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="textEdit_2">
+               <widget class="QTextEdit" name="password_field">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -172,7 +172,7 @@ border-radius:10px;</string>
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="loginButton">
             <property name="styleSheet">
              <string notr="true">QPushButton{
 background-color:#2D9596;
