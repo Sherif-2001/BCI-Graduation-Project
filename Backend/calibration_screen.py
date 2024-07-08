@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QTimer
 import serial
-from Backend.message_formating import * 
+from message_formating import * 
 
 
 class Ui_MainWindow(object):
