@@ -5,6 +5,7 @@ from pylsl import StreamInlet, resolve_stream
 import time
 import csv
 import threading
+import os
 
 class Ui_MainWindow(QtWidgets.QMainWindow):
     def setupUi(self, MainWindow):
@@ -61,8 +62,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         
         # Image paths
         self.grasp_img_path = "Imgs/Grasp.png"
-        self.release_img_path = "Imgs/Release.png"
-        self.done_img_path = "Imgs/done.png"  # Add the path to the done.png image
+        self.release_img_path = "Imgs/Release.jpeg"
 
         # Create a layout for the photo_widget and add the imageLabel to it
         self.photoLayout = QtWidgets.QVBoxLayout(self.photo_widget)
@@ -131,15 +131,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
                 self.imageLabel.clear()
 
     def show_get_ready(self):
-        if self.current_task_index >= len(self.task_repeated):
-            self.grasp_release_label_6.setText("Session Finished Successfully")
-            self.imageLabel.setPixmap(QtGui.QPixmap(self.done_img_path).scaled(self.photo_widget.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
-        else:
-            self.grasp_release_label_6.setText("Get Ready")
-            self.imageLabel.clear()
-            self.alarm_sound.play()
-            self.get_ready_timer.stop()
-            QtCore.QTimer.singleShot(2000, self.show_task)  # Show task after "Get Ready" for 2 seconds
+        self.grasp_release_label_6.setText("Get Ready")
+        self.imageLabel.clear()
+        self.alarm_sound.play()
+        self.get_ready_timer.stop()
+        QtCore.QTimer.singleShot(2000, self.show_task)  # Show task after "Get Ready" for 2 seconds
 
     def show_task(self):
         if self.current_task_index < len(self.task_repeated):
@@ -155,29 +151,32 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             sub_name = "sherif"
             session_num = 1
             run = self.current_task_index + 1
+            folder_path = "Records\sherif"            
             file_name = f"sub-{sub_name}_ses-{session_num}_task-{task}_run-{run}_eeg.csv"
+
+            # add folder path and file name to file path
+            file_path = os.path.join(folder_path, file_name)
+
             print(f"Trial {run}: {task}")  # Print the file name to the terminal
             print(file_name)  # Print the file name to the terminal
+            print(file_path)  # Print the file name to the terminal
 
             # Start a new thread for EEG recording
-            self.eeg_thread = threading.Thread(target=self.record_eeg, args=(file_name,))
+            self.eeg_thread = threading.Thread(target=self.record_eeg, args=(file_path,))
             self.eeg_thread.start()
 
     def record_eeg(self, file_name):
         # Record EEG data
-        if record_eeg_to_csv(file_name, self.sfreq, self.ch_names, 6):
+        if record_eeg_to_csv(file_name, self.sfreq, self.ch_names, 1):
             print("Recording Done")
             self.current_task_index += 1
             QtCore.QTimer.singleShot(0, self.show_rest)  # Show rest immediately after task is done
 
     def show_rest(self):
-        if self.current_task_index >= len(self.task_repeated):
-            self.show_get_ready()
-        else:
-            self.grasp_release_label_6.setText("Stop take rest")
-            self.imageLabel.clear()
-            self.rest_timer.stop()
-            QtCore.QTimer.singleShot(4000, self.show_get_ready)  # Show rest message for 4 seconds, then show "Get Ready"
+        self.grasp_release_label_6.setText("Stop take rest")
+        self.imageLabel.clear()
+        self.rest_timer.stop()
+        QtCore.QTimer.singleShot(4000, self.show_get_ready)  # Show rest message for 4 seconds, then show "Get Ready"
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
