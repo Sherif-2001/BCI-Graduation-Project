@@ -27,6 +27,7 @@ import socket
 
 class Ui_MainWindow(object):
     go_back = QtCore.pyqtSignal()
+    go_to_report = QtCore.pyqtSignal()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -607,7 +608,24 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.addWidget(self.widget_39)
         self.verticalLayout_22.addWidget(self.widget_35)
         self.horizontalLayout_12.addWidget(self.widget_32)
+
+        self.pushButton_2 = QtWidgets.QPushButton(self.m_tab)
+        self.pushButton_2.setStyleSheet("QPushButton{\n"
+"border-radius:15;\n"
+"background-color:rgb(0, 150, 0);\n"
+"color:rgb(255, 255, 255);\n"
+"font: 25pt \"Forte\";\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:rgb(0, 194, 0);\n"
+"}")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout.addWidget(self.pushButton_2)
+        self.pushButton_2.clicked.connect(self.go_to_report.emit)
+
         self.verticalLayout.addWidget(self.widget_2)
+
+
         self.tabWidget.addTab(self.m_tab, "")
         self.horizontalLayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -675,6 +693,8 @@ class Ui_MainWindow(object):
         self.m_glove_label.setText(_translate("MainWindow", "Glove"))
         self.m_g_glove_label.setText(_translate("MainWindow", "Grasping"))
         self.m_r_glove_label.setText(_translate("MainWindow", "Releasing"))
+        self.pushButton_2.setText(_translate("MainWindow", "Add Report"))
+
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.m_tab), _translate("MainWindow", "Monitor")
         )

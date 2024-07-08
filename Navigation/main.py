@@ -7,6 +7,8 @@ from LSLViewer import LSLViewer
 
 from record_automation import Ui_MainWindow as AutomationMainWindow
 
+from report import Ui_MainWindow,Report
+
 from newpatient import NewPatientMainWindow
 
 from functions import *
@@ -34,6 +36,12 @@ class MainController(QtCore.QObject):
         self.session_window = QtWidgets.QMainWindow()
         self.session_ui = SessionMainWindow()
         self.session_ui.setupUi(self.session_window)
+
+        self.ReportPage = QtWidgets.QMainWindow()
+        self.report_ui = Ui_MainWindow()
+        self.report_ui.setupUi(self.ReportPage )
+        # self.report_ui.show()
+        # self.ReportPage.show()
 
 
         # Stream for session_window
@@ -66,11 +74,13 @@ class MainController(QtCore.QObject):
         self.patients_window.go_back.connect(self.show_login_window)
         self.calibration_window.go_back.connect(self.show_patients_window)
         
+        
         # Connect signals for session window
         self.session_ui.go_back.connect(self.show_patients_window)
         # self.session_ui.go_back.connect(self.show_patients_window)
         self.session_ui.go_to_automation.connect(self.start_automation_tasks)
 
+        self.calibration_window.go_to_report.connect(self.show_report_window)
 
     def show_login_window(self):
         self.calibration_window.hide()
@@ -84,6 +94,13 @@ class MainController(QtCore.QObject):
         self.session_window.close()
         self.new_patient_window.hide()
         self.patients_window.show()
+
+    def show_report_window(self):
+        # self.login_window.hide()
+        self.calibration_window.hide()
+        # self.session_window.close()
+        # self.new_patient_window.hide()
+        self.ReportPage.show()
 
     def show_calibration_window(self):
         self.patients_window.hide()
