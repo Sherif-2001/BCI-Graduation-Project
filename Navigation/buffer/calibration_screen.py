@@ -20,6 +20,9 @@ from LSLViewer import LSLViewer
 
 from functions import *
 
+import socket
+
+
 
 
 class Ui_MainWindow(object):
@@ -660,6 +663,18 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+
+        self.udp_host = '0.0.0.0'  # Listen on all interfaces
+        self.udp_port = 12345  # Port to listen on
+
+        # self.addr = (self.esp32_ip, self.udp_port)
+        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+        # Bind the socket to the server IP and port
+        self.client_socket.bind((self.udp_host, self.udp_port))
+
+        self.esp32_ip = '192.168.137.35'  # IP address of your ESP32
         
         self.fes_grasping_bar_value = 0
         self.fes_releasing_bar_value = 0
@@ -674,6 +689,7 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ser = serial.Serial(serial_port, baud_rate)
         
         self.received_message = ''
+        self.received_eeg_message = ''
         
         self.glove_state_list = [0, 0]
         
@@ -700,7 +716,23 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.prediction_timer.timeout.connect(self.update_prediction)
         # # Start the timer with a 2000ms interval (2 seconds)
         # self.prediction_timer.start(2000)
+
+        # TODO: fix this error
+        # Create a QTimer for prediction
+        # self.prediction_timer = QTimer(self)
+        # # Connect the timeout signal to the update_prediction function
+        # self.prediction_timer.timeout.connect(self.udp_send)
+        # # Start the timer with a 2000ms interval (2 seconds)
+        # self.prediction_timer.start(4000)
         
+        # Create a QTimer for eeg _receive
+        self.prediction_timer = QTimer(self)
+        # Connect the timeout signal to the update_prediction function
+        self.prediction_timer.timeout.connect(self.udp_receive)
+        # Start the timer with a 2000ms interval (2 seconds)
+        self.prediction_timer.start(2000)
+        
+
         # Create a QTimer for receive
         self.receive_timer = QTimer(self)
         # Connect the timeout signal to the update_prediction function
@@ -746,7 +778,7 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
     def get_predicrion(self):
         # if self.prediction_list[self.counter] == 0:
-            self.m_prediction_label.setText(self.received_message)
+            self.m_prediction_label.setText(self.received_eeg_message)
         # if self.prediction_list[self.counter] == 1:
             # self.m_prediction_label.setText("Releasing")
         # make list contaiing 10 "Grasp" then 10 "Release" and each 2 seconds take element from this list in variable prediction
@@ -766,7 +798,27 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.received_message = message
             self.rmsg_header, self.rmsg_sub_header, self.rmsg_values = MessageDecoding(self.received_message)
             self.update_monitoring()
+
+    def udp_send(self):
+        addr = (self.esp32_ip, self.udp_port)
+        # client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        prediction = MessageEncoding(MASTER_HEADER, MASTER_DECISION_SUBHEADER, self.current_prediction)
+        self.client_socket.sendto(prediction.encode(), addr)
+        print(f'Sent: {prediction}')
+        self.update_prediction()
             
+    def udp_receive(self):
+        # Receive data from the client
+        data, addr = self.client_socket.recvfrom(1024)  # Buffer size is 1024 bytes
+        prediction = data.decode('utf-8')
+        print(f"Received prediction: {prediction} from {addr}")
+        self.received_eeg_message = prediction
+        self.m_prediction_label.setText(self.received_eeg_message)
+
+        # print(prediction)
+
+
+
     
         
 if __name__ == "__main__":
