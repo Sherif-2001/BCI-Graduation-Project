@@ -47,6 +47,9 @@ def MessageEncoding(header, sub_header, values_list):
 
 def MessageDecoding(message):
     print(message)
+    
+    if ';' not in message:
+        return None, None, None
     # Split the string at the colon
     header, rest_message = message.split(":")
 
