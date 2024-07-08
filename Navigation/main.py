@@ -3,11 +3,13 @@ from login import LoginPageMainWindow
 from patients import PatientsMainWindow
 from calibration_screen import MainWindowApp as CalibrationMainWindow
 from session import Ui_MainWindow as SessionMainWindow
-from session import LSLViewer
+from LSLViewer import LSLViewer
 
 from record_automation import Ui_MainWindow as AutomationMainWindow
 
 from newpatient import NewPatientMainWindow
+
+from functions import *
 
 import sys
 import numpy as np
@@ -33,20 +35,26 @@ class MainController(QtCore.QObject):
         self.session_ui = SessionMainWindow()
         self.session_ui.setupUi(self.session_window)
 
+
         # Stream for session_window
-        # Setting up the LSLViewer
-        streams = resolve_stream('type', 'EEG')
-        if len(streams) == 0:
-            raise(RuntimeError("Can't find EEG stream"))
-        lslv = LSLViewer(streams[0], self.session_ui.fig, self.session_ui.axes, window=5, scale=891)
+        # # Setting up the LSLViewer
+        # streams = resolve_stream('type', 'EEG')
+        # if len(streams) == 0:
+        #     raise(RuntimeError("Can't find EEG stream"))
+        # lslv = LSLViewer(streams[0], self.session_ui.fig, self.session_ui.axes, window=5, scale=891)
         
-        # Start the LSLViewer
-        lslv.start()
+        # # Start the LSLViewer
+        # lslv.start()
 
 
         self.new_patient_window = NewPatientMainWindow()
 
         self.automation_window = AutomationMainWindow()
+
+        # # Extract EEG stream info
+        # self.automation_window.sfreq, self.automation_window.ch_names = AutomationMainWindow.extract_stream_info()
+        # self.automation_window.setupUi(self.automation_window)
+        # self.automation_window.show()
 
 
         # Connect custom signals
@@ -60,14 +68,9 @@ class MainController(QtCore.QObject):
         
         # Connect signals for session window
         self.session_ui.go_back.connect(self.show_patients_window)
+        # self.session_ui.go_back.connect(self.show_patients_window)
         self.session_ui.go_to_automation.connect(self.start_automation_tasks)
 
-    def show_automation_window(self):
-        self.automation_window.show()
-
-    def start_automation_tasks(self):
-        self.show_automation_window()
-        self.automation_window.show_get_ready()  # Start the automation tasks
 
     def show_login_window(self):
         self.calibration_window.hide()
@@ -78,21 +81,44 @@ class MainController(QtCore.QObject):
     def show_patients_window(self):
         self.login_window.hide()
         self.calibration_window.hide()
-        self.session_window.hide()
+        self.session_window.close()
         self.new_patient_window.hide()
         self.patients_window.show()
 
     def show_calibration_window(self):
         self.patients_window.hide()
+        # Setting up the LSLViewer
+        self.streams = resolve_stream('type', 'EEG')
+        if len(self.streams ) == 0:
+            raise(RuntimeError("Can't find EEG stream"))
+        lslv = LSLViewer(self.streams [0], self.calibration_window.fig, self.calibration_window.axes, window=5, scale=891)
+        # Start the LSLViewer
+        lslv.start()
         self.calibration_window.show()
 
     def show_session_window(self):
         self.patients_window.hide()
+        # Setting up the LSLViewer
+        self.streams = resolve_stream('type', 'EEG')
+        if len(self.streams ) == 0:
+            raise(RuntimeError("Can't find EEG stream"))
+        lslv = LSLViewer(self.streams [0], self.session_ui.fig, self.session_ui.axes, window=5, scale=891)
+        
+        # Start the LSLViewer
+        lslv.start()
+
         self.session_window.show()
 
     def show_new_patient_window(self):
         self.patients_window.hide()
         self.new_patient_window.show()
+    
+    def start_automation_tasks(self):
+        # Extract EEG stream info
+        self.automation_window.sfreq, self.automation_window.ch_names = extract_stream_info()
+        self.automation_window.setupUi(self.automation_window)
+        self.automation_window.show()
+
 
     def run(self):
         self.login_window.show()

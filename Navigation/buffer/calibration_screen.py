@@ -12,10 +12,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QTimer
 import serial
 from message_formating import * 
-import socket
+
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+
+from LSLViewer import LSLViewer
+
+from functions import *
+
 
 
 class Ui_MainWindow(object):
+    go_back = QtCore.pyqtSignal()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
@@ -309,6 +318,27 @@ class Ui_MainWindow(object):
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
         self.horizontalLayout_4.addItem(spacerItem)
+
+        # new back push button
+
+        self.pushButton = QtWidgets.QPushButton(self.widget_6)
+        self.pushButton.setStyleSheet("QPushButton{\n"
+        "background-color:rgb(120,120, 120);\n"
+        "border-radius:15;\n"
+        "color:rgb(255, 255, 255);\n"
+        "font: 25pt \"Forte\";\n"
+        "}\n"
+        "QPushButton:hover{\n"
+        "background-color:rgb(70, 70, 70);\n"
+        "}\n"
+        "")
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.pushButton.clicked.connect(self.go_back.emit)
+
+        # End of new back push button
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem1)
         self.sc_start_button = QtWidgets.QPushButton(self.widget_6)
         self.sc_start_button.setStyleSheet(
             "QPushButton{\n"
@@ -326,6 +356,11 @@ class Ui_MainWindow(object):
         spacerItem1 = QtWidgets.QSpacerItem(
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
+
+
+
+
+
         self.horizontalLayout_4.addItem(spacerItem1)
         self.verticalLayout_2.addWidget(self.widget_6)
         self.tabWidget.addTab(self.sc_tab, "")
@@ -373,7 +408,17 @@ class Ui_MainWindow(object):
             "background-color:rgb(255, 255, 255);\n" "border-radius:5px;"
         )
         self.m_EEG_pLot_widget.setObjectName("m_EEG_pLot_widget")
-        self.horizontalLayout_13.addWidget(self.m_EEG_pLot_widget)
+
+        #add plot widget here
+        # Add matplotlib canvas here
+        self.fig = Figure(figsize=(5, 4), dpi=100)
+        self.canvas = FigureCanvas(self.fig)
+        self.axes = self.fig.add_subplot(111)
+
+
+        self.horizontalLayout_13.addWidget(self.canvas)
+        # self.horizontalLayout_13.addWidget(self.canvas,2, 0, 1, 3)
+        # self.horizontalLayout_13.addWidget(self.m_EEG_pLot_widget)
         self.horizontalLayout_2.addWidget(self.widget_3)
         self.widget_4 = QtWidgets.QWidget(self.widget)
         sizePolicy = QtWidgets.QSizePolicy(
@@ -564,31 +609,10 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.m_tab, "")
         self.horizontalLayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 727, 38))
-        self.menubar.setStyleSheet(
-            "QMenuBar {\n"
-            "    color:rgb(255, 255, 255);\n"
-            "    font: 585 15pt; \n"
-            "}\n"
-            "QMenuBar::item {\n"
-            "    background-color: #444444;\n"
-            "    color: white;\n"
-            "    padding: 5px 10px;\n"
-            "}\n"
-            "QMenuBar::item:selected { /* when mouse hover */\n"
-            "    background-color: #A9A9A9;\n"
-            "}\n"
-            ""
-        )
-        self.menubar.setObjectName("menubar")
-        self.menuBack = QtWidgets.QMenu(self.menubar)
-        self.menuBack.setObjectName("menuBack")
-        MainWindow.setMenuBar(self.menubar)
+        
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.menubar.addAction(self.menuBack.menuAction())
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
@@ -610,6 +634,8 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "In Progress")
         )
         self.instructions_sc_label.setText(_translate("MainWindow", "Instructions"))
+        self.pushButton.setText(_translate("MainWindow", "Back"))
+
         self.sc_start_button.setText(_translate("MainWindow", "     Start     "))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.sc_tab),
@@ -626,7 +652,6 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.m_tab), _translate("MainWindow", "Monitor")
         )
-        self.menuBack.setTitle(_translate("MainWindow", "Back"))
     
 
 
@@ -636,18 +661,12 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         
-        self.udp_host = '0.0.0.0'  # Listen on all interfaces
-        self.udp_port = 12345  # Port to listen on
-
-        self.esp32_ip = '192.168.137.35'  # IP address of your ESP32
-        
         self.fes_grasping_bar_value = 0
         self.fes_releasing_bar_value = 0
         self.glove_grasping_bar_value = 0
         self.glove_releasing_bar_value = 0
         
         self.prediction_list = [0, 1, 0, 0, 1, 1, 0, 0, 0, 1]
-        self.current_prediction = 0
         self.counter = 0
         # Serial port configuration
         serial_port = 'COM4'  # Update with your actual COM port
@@ -658,7 +677,7 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.glove_state_list = [0, 0]
         
-        self.glove_current_state = GLOVE_STATE_RELEASE
+        self.glove_currunt_state = GLOVE_STATE_RELEASE
         # Connect the button to the slot
         self.sc_start_button.clicked.connect(self.start)
         
@@ -675,12 +694,12 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # # Start the timer with a 1000ms interval (1 second)
         # self.monitoring_timer.start(1000)
 
-        # Create a QTimer for prediction
-        self.prediction_timer = QTimer(self)
-        # Connect the timeout signal to the update_prediction function
-        self.prediction_timer.timeout.connect(self.udp_send)
-        # Start the timer with a 2000ms interval (2 seconds)
-        self.prediction_timer.start(4000)
+        # # Create a QTimer for prediction
+        # self.prediction_timer = QTimer(self)
+        # # Connect the timeout signal to the update_prediction function
+        # self.prediction_timer.timeout.connect(self.update_prediction)
+        # # Start the timer with a 2000ms interval (2 seconds)
+        # self.prediction_timer.start(2000)
         
         # Create a QTimer for receive
         self.receive_timer = QTimer(self)
@@ -721,16 +740,19 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.get_fes_progress()
         elif self.rmsg_header == GLOVE_HEADER:
             if self.rmsg_sub_header == GLOVE_STATE_SUBHEADER:
-                self.glove_current_state = self.rmsg_values[0] 
+                self.glove_currunt_state = self.rmsg_values[0] 
             elif self.rmsg_sub_header == GLOVE_ANGLES_SUBHEADER:
                 self.get_glove_progress()
         
     def get_predicrion(self):
         # if self.prediction_list[self.counter] == 0:
             self.m_prediction_label.setText(self.received_message)
-            self.current_prediction = self.prediction_list[self.counter]
         # if self.prediction_list[self.counter] == 1:
             # self.m_prediction_label.setText("Releasing")
+        # make list contaiing 10 "Grasp" then 10 "Release" and each 2 seconds take element from this list in variable prediction
+
+
+        # self.m_prediction_label.setText("Grasping")
             
     def update_prediction(self):
         self.get_predicrion()
@@ -743,24 +765,24 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
             message = self.ser.readline().decode('utf-8').strip()
             self.received_message = message
             self.rmsg_header, self.rmsg_sub_header, self.rmsg_values = MessageDecoding(self.received_message)
-            if self.rmsg_header is None:
-                return
             self.update_monitoring()
             
-    def udp_send(self):
-        addr = (self.esp32_ip, self.udp_port)
-        client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        prediction = MessageEncoding(MASTER_HEADER, MASTER_DECISION_SUBHEADER, self.current_prediction)
-        client_socket.sendto(prediction.encode(), addr)
-        print(f'Sent: {prediction}')
-        self.update_prediction()
-            
     
-        
         
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindowApp()
+    # Setting up the LSLViewer
+    streams = resolve_stream('type', 'EEG')
+    if len(streams) == 0:
+        raise(RuntimeError("Can't find EEG stream"))
+    lslv = LSLViewer(streams[0], main_window.fig, main_window.axes, window=5, scale=891)
+    
+    # Start the LSLViewer
+    lslv.start()
+
     main_window.show()
     sys.exit(app.exec_())
+    # Stop the LSLViewer
+    lslv.stop()

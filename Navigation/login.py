@@ -33,7 +33,7 @@ class LoginPageMainWindow(QtWidgets.QMainWindow):
             print("Login Successful!!")
             # Notify the main controller about successful login
             self.login_successful.emit()
-            QMessageBox.information(self, "Success", "Sign In successful!")
+            # QMessageBox.information(self, "Success", "Sign In successful!")
         except Exception as e:
             QMessageBox.warning(self, "Error", "Please Enter Valid Email and Password")
             print("Error: ", str(e))
