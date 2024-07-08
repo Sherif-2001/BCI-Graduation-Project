@@ -19,244 +19,7 @@ color:rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="6" column="0" colspan="2">
-     <widget class="QLabel" name="label_11">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Mobile Number:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="0">
-     <widget class="QLabel" name="label_28">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Object Shape:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QLabel" name="label_10">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Phone number</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="0" colspan="2">
-     <widget class="QLabel" name="label_22">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Disease:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="2">
-     <widget class="QLabel" name="label_27">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Object Shape</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0" colspan="2">
-     <widget class="QLabel" name="label_9">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Phone number:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="2">
-     <widget class="QLabel" name="label_16">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>National ID</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QLabel" name="label_4">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>ID</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="0" colspan="2">
-     <widget class="QLabel" name="label_24">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Affacted Hand:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QLabel" name="label_2">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Patient ID:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="2">
-     <widget class="QLabel" name="label_18">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Disease</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="8">
-     <widget class="QPushButton" name="pushButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-        <horstretch>2</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color:#2D9596;
-border-radius:5%;
-color:rgb(255, 255, 255);
-font: 25pt &quot;Forte&quot;;
-}
-QPushButton:hover{
-background-color:rgb(67, 183, 255);
-}
-</string>
-      </property>
-      <property name="text">
-       <string>New Patient</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0" colspan="2">
-     <widget class="QLabel" name="label_7">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Gender:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="8">
-     <widget class="QComboBox" name="comboBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>3</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:rgb(75, 75, 75);
-color:rgb(255, 255, 255);
-font: 18pt ;
-</string>
-      </property>
-      <property name="currentText">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QLabel" name="label_3">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
-    </item>
     <item row="10" column="2">
-     <widget class="QLabel" name="label_23">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Weight</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
-     <widget class="QLabel" name="label_12">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Mobile Number</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="2">
-     <widget class="QLabel" name="label_25">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Height</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="2">
-     <widget class="QLabel" name="label_26">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Affacted Hand</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="2">
      <widget class="QLabel" name="label_20">
       <property name="styleSheet">
        <string notr="true">color:rgb(255, 255, 255);
@@ -267,117 +30,18 @@ font: 12pt ;</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
-     <widget class="QLabel" name="label_8">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Gender</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QLabel" name="label">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Patient Name:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="0" colspan="2">
-     <widget class="QLabel" name="label_21">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Dominant Hand:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
-     <widget class="QLabel" name="label_6">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Age</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0" colspan="2">
-     <widget class="QLabel" name="label_17">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Weight:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" colspan="2">
-     <widget class="QLabel" name="label_5">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Age:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0" colspan="2">
-     <widget class="QLabel" name="label_15">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>National ID:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2">
+    <item row="6" column="2">
      <widget class="QLabel" name="label_14">
       <property name="styleSheet">
        <string notr="true">color:rgb(255, 255, 255);
 font: 12pt ;</string>
       </property>
       <property name="text">
-       <string>Adress</string>
+       <string>Address</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="0" colspan="2">
-     <widget class="QLabel" name="label_19">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Height:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0" colspan="2">
-     <widget class="QLabel" name="label_13">
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255, 255, 255);
-font: 12pt ;</string>
-      </property>
-      <property name="text">
-       <string>Adress:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="8">
+    <item row="13" column="8">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_3">
@@ -419,38 +83,318 @@ background-color:rgb(239, 0, 0);
       </item>
      </layout>
     </item>
-   </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>727</width>
-     <height>38</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QMenuBar {
-    color:rgb(255, 255, 255);
-    font: 585 15pt; 
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_3">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <widget class="QLabel" name="label_7">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Gender:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="2">
+     <widget class="QLabel" name="label_26">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Affacted Hand</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0" colspan="2">
+     <widget class="QLabel" name="label_17">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Weight:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="2">
+     <widget class="QLabel" name="label_19">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Height:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0" colspan="2">
+     <widget class="QLabel" name="label_13">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Address:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2">
+     <widget class="QLabel" name="label_25">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Height</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLabel" name="label_8">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Gender</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLabel" name="label_6">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>DOB</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0" colspan="2">
+     <widget class="QLabel" name="label_15">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>National ID:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="8">
+     <widget class="QPushButton" name="pushButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>2</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color:#2D9596;
+border-radius:5%;
+color:rgb(255, 255, 255);
+font: 25pt &quot;Forte&quot;;
 }
-QMenuBar::item {
-    background-color: #444444;
-    color: white;
-    padding: 5px 10px;
-}
-QMenuBar::item:selected { /* when mouse hover */
-    background-color: #A9A9A9;
+QPushButton:hover{
+background-color:rgb(67, 183, 255);
 }
 </string>
-   </property>
-   <widget class="QMenu" name="menuBack">
-    <property name="title">
-     <string>Back</string>
-    </property>
-   </widget>
-   <addaction name="menuBack"/>
+      </property>
+      <property name="text">
+       <string>New Patient</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2">
+     <widget class="QLabel" name="label_23">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Weight</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="2">
+     <widget class="QLabel" name="label_9">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Phone number:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="2">
+     <widget class="QLabel" name="label_18">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Disease</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0" colspan="2">
+     <widget class="QLabel" name="label_21">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Dominant Hand:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
+     <widget class="QLabel" name="label_16">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>National ID</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLabel" name="label_10">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Phone number</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0" colspan="2">
+     <widget class="QLabel" name="label_24">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Affacted Hand:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0" colspan="2">
+     <widget class="QLabel" name="label_11">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Mobile Number:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0" colspan="2">
+     <widget class="QLabel" name="label_22">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Disease:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Patient Name:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QLabel" name="label_5">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Date of Birth</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QLabel" name="label_12">
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255, 255, 255);
+font: 12pt ;</string>
+      </property>
+      <property name="text">
+       <string>Mobile Number</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="8">
+     <widget class="QComboBox" name="comboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>3</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(75, 75, 75);
+color:rgb(255, 255, 255);
+font: 18pt ;
+</string>
+      </property>
+      <property name="currentText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color:rgb(120,120, 120);
+border-radius:5%;
+color:rgb(255, 255, 255);
+font: 25pt &quot;Forte&quot;;
+}
+QPushButton:hover{
+background-color:rgb(70, 70, 70);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

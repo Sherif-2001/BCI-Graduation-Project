@@ -340,7 +340,6 @@ class Ui_NewPatientMainWindow(object):
             else "Left" if self.radioButton_5.isChecked() else ""
         )
         disease = self.textEdit_9.toPlainText()
-        object_shape = self.comboBox.currentText()
 
         # Create full name
         full_name = first_name + " " + last_name
@@ -359,7 +358,6 @@ class Ui_NewPatientMainWindow(object):
             dominant_hand=dominant_hand,
             affected_hand=affected_hand,
             disease=disease,
-            object_shape=object_shape,
         )
         try:
             new_patient.upload_patient_to_firebase()
@@ -390,7 +388,6 @@ class Patient:
         dominant_hand,
         affected_hand,
         disease,
-        object_shape,
     ):
         self.name = name
         self.dob = dob
@@ -404,7 +401,6 @@ class Patient:
         self.dominant_hand = dominant_hand
         self.affected_hand = affected_hand
         self.disease = disease
-        self.object_shape = object_shape
         self.reports = []
 
     def to_dict(self):
@@ -421,7 +417,6 @@ class Patient:
             "DominantHand": self.dominant_hand,
             "AffectedHand": self.affected_hand,
             "Disease": self.disease,
-            "ObjectShape": self.object_shape,
             "reports": [report.to_dict() for report in self.reports],
         }
 
