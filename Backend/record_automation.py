@@ -5,75 +5,79 @@ from pylsl import StreamInlet, resolve_stream
 import time
 import csv
 import threading
+
 import os
 
 class Ui_MainWindow(QtWidgets.QMainWindow):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(762, 429)
+        MainWindow.resize(727, 662)
         MainWindow.setStyleSheet("background-color:#265073;")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 0, 1, 1, 1)
-        self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setStyleSheet("qproperty-alignment: AlignCenter;\n"
-"text-align:center;")
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem1)
-        # //////////////////////// Grasp Release Paper ////////////////////////
-        self.grasp_release_label_6 = QtWidgets.QLabel(self.widget)
-        self.grasp_release_label_6.setStyleSheet("qproperty-alignment: AlignCenter;\n"
-"text-align:center;\n"
-"font: 700 20pt; \n"
-"color:rgb(255, 255, 255);\n"
-"")
-        self.grasp_release_label_6.setObjectName("grasp_release_label_6")
-        self.horizontalLayout_6.addWidget(self.grasp_release_label_6)
-        # //////////////////////// End of Grasp Release Paper ////////////////////////
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem2)
-        self.gridLayout.addWidget(self.widget, 1, 1, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem3, 2, 1, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(130, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem4, 3, 0, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(20, 150, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem, 5, 1, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(500, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem1, 1, 2, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(500, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem2, 1, 0, 1, 1)
         self.photo_widget = QtWidgets.QWidget(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.photo_widget.sizePolicy().hasHeightForWidth())
         self.photo_widget.setSizePolicy(sizePolicy)
-        self.photo_widget.setMinimumSize(QtCore.QSize(352, 111))
+        self.photo_widget.setMinimumSize(QtCore.QSize(100, 100))
+        self.photo_widget.setMaximumSize(QtCore.QSize(600, 300))
         self.photo_widget.setSizeIncrement(QtCore.QSize(1, 1))
+        self.photo_widget.setBaseSize(QtCore.QSize(0, 0))
         self.photo_widget.setStyleSheet("background-color:rgb(255, 255, 255);\n"
 "border-radius:5px;")
         self.photo_widget.setObjectName("photo_widget")
-        # //////////////////////// Image Label ////////////////////////
-        self.imageLabel = QtWidgets.QLabel(self.photo_widget)
-        self.imageLabel.setStyleSheet("background-color:rgb(255, 255, 255);")
-        self.imageLabel.setObjectName("imageLabel")
-        self.imageLabel.setAlignment(QtCore.Qt.AlignCenter)
-        
-        # Image paths
-        self.grasp_img_path = "Imgs/Grasp.png"
-        self.release_img_path = "Imgs/Release.jpeg"
 
         # Create a layout for the photo_widget and add the imageLabel to it
         self.photoLayout = QtWidgets.QVBoxLayout(self.photo_widget)
+        self.imageLabel = QtWidgets.QLabel(self.photo_widget)
+        self.imageLabel.setStyleSheet("background-color:rgb(255, 255, 255);")
+        self.imageLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.photoLayout.addWidget(self.imageLabel)
 
-        # //////////////////////// End of Image Label ////////////////////////
-        self.gridLayout.addWidget(self.photo_widget, 3, 1, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(130, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem5, 3, 2, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem6, 4, 1, 1, 1)
+        # Image Pathes
+        self.grasp_img_path = "Imgs/Grasp.png"
+        self.release_img_path = "Imgs/Release.png"
+        self.done_img_path = "Imgs/done.png"  # Add the path to the done.png image
+
+        self.gridLayout.addWidget(self.photo_widget, 1, 1, 1, 1)
+        self.widget = QtWidgets.QWidget(self.centralwidget)
+        self.widget.setStyleSheet("qproperty-alignment: AlignCenter;\n"
+"text-align:center;")
+        self.widget.setObjectName("widget")
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.widget)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.grasp_release_label_6 = QtWidgets.QLabel(self.widget)
+        font = QtGui.QFont()
+        font.setPointSize(30)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setStrikeOut(False)
+        self.grasp_release_label_6.setFont(font)
+        self.grasp_release_label_6.setStyleSheet("qproperty-alignment: AlignCenter;\n"
+"text-align:center;\n"
+"color:rgb(255, 255, 255);\n"
+"")
+        self.grasp_release_label_6.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.grasp_release_label_6.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.grasp_release_label_6.setLineWidth(3)
+        self.grasp_release_label_6.setMidLineWidth(0)
+        self.grasp_release_label_6.setObjectName("grasp_release_label_6")
+        self.horizontalLayout_6.addWidget(self.grasp_release_label_6)
+        self.gridLayout.addWidget(self.widget, 3, 1, 2, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 100, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem3, 2, 1, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem4, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setStyleSheet("QMenuBar::item:selected { /* when mouse hover */\n"
@@ -87,7 +91,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         # Load alarm sound
         self.alarm_sound = QMediaPlayer()
-        self.alarm_sound.setMedia(QMediaContent(QtCore.QUrl.fromLocalFile("alarm.wav")))
+        self.alarm_sound.setMedia(QMediaContent(QtCore.QUrl.fromLocalFile("Get_Ready.mp3")))
 
         # Timer to alternate tasks and images
         self.get_ready_timer = QtCore.QTimer(MainWindow)
@@ -126,25 +130,33 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
                 current_image_path = None
 
             if current_image_path:
-                self.imageLabel.setPixmap(QtGui.QPixmap(current_image_path).scaled(self.photo_widget.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
+                self.imageLabel.setPixmap(QtGui.QPixmap(current_image_path).scaled(
+                    self.imageLabel.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
             else:
                 self.imageLabel.clear()
 
     def show_get_ready(self):
-        self.grasp_release_label_6.setText("Get Ready")
-        self.imageLabel.clear()
-        self.alarm_sound.play()
-        self.get_ready_timer.stop()
-        QtCore.QTimer.singleShot(2000, self.show_task)  # Show task after "Get Ready" for 2 seconds
+        if self.current_task_index >= len(self.task_repeated):
+            self.grasp_release_label_6.setText("Session Finished Successfully")
+            self.imageLabel.setPixmap(QtGui.QPixmap(self.done_img_path).scaled(
+                self.imageLabel.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
+        else:
+            self.grasp_release_label_6.setText("Get Ready")
+            self.imageLabel.clear()
+            self.alarm_sound.play()
+            self.get_ready_timer.stop()
+            QtCore.QTimer.singleShot(2000, self.show_task)  # Show task after "Get Ready" for 2 seconds
 
     def show_task(self):
         if self.current_task_index < len(self.task_repeated):
             task = self.task_repeated[self.current_task_index]
             self.grasp_release_label_6.setText(task)
             if "Grasp" in task:
-                self.imageLabel.setPixmap(QtGui.QPixmap(self.grasp_img_path).scaled(self.photo_widget.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
+                self.imageLabel.setPixmap(QtGui.QPixmap(self.grasp_img_path).scaled(
+                    self.imageLabel.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
             elif "Release" in task:
-                self.imageLabel.setPixmap(QtGui.QPixmap(self.release_img_path).scaled(self.photo_widget.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
+                self.imageLabel.setPixmap(QtGui.QPixmap(self.release_img_path).scaled(
+                    self.imageLabel.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation))
             else:
                 self.imageLabel.clear()
 
@@ -153,8 +165,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             run = self.current_task_index + 1
             folder_path = "Records\sherif"            
             file_name = f"sub-{sub_name}_ses-{session_num}_task-{task}_run-{run}_eeg.csv"
-
-            # add folder path and file name to file path
             file_path = os.path.join(folder_path, file_name)
 
             print(f"Trial {run}: {task}")  # Print the file name to the terminal
@@ -167,16 +177,19 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     def record_eeg(self, file_name):
         # Record EEG data
-        if record_eeg_to_csv(file_name, self.sfreq, self.ch_names, 1):
+        if record_eeg_to_csv(file_name, self.sfreq, self.ch_names, 6):
             print("Recording Done")
             self.current_task_index += 1
             QtCore.QTimer.singleShot(0, self.show_rest)  # Show rest immediately after task is done
 
     def show_rest(self):
-        self.grasp_release_label_6.setText("Stop take rest")
-        self.imageLabel.clear()
-        self.rest_timer.stop()
-        QtCore.QTimer.singleShot(4000, self.show_get_ready)  # Show rest message for 4 seconds, then show "Get Ready"
+        if self.current_task_index >= len(self.task_repeated):
+            self.show_get_ready()
+        else:
+            self.grasp_release_label_6.setText("Stop take rest")
+            self.imageLabel.clear()
+            self.rest_timer.stop()
+            QtCore.QTimer.singleShot(4000, self.show_get_ready)  # Show rest message for 4 seconds, then show "Get Ready"
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
