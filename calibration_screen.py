@@ -9,6 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QTimer
+import serial
+from Backend.message_formating import * 
 
 
 class Ui_MainWindow(object):
@@ -623,3 +626,123 @@ class Ui_MainWindow(object):
             self.tabWidget.indexOf(self.m_tab), _translate("MainWindow", "Monitor")
         )
         self.menuBack.setTitle(_translate("MainWindow", "Back"))
+    
+
+
+
+class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        
+        self.fes_grasping_bar_value = 0
+        self.fes_releasing_bar_value = 0
+        self.glove_grasping_bar_value = 0
+        self.glove_releasing_bar_value = 0
+        
+        self.prediction_list = [0, 1, 0, 0, 1, 1, 0, 0, 0, 1]
+        self.counter = 0
+        # Serial port configuration
+        serial_port = 'COM4'  # Update with your actual COM port
+        baud_rate = 115200
+        self.ser = serial.Serial(serial_port, baud_rate)
+        
+        self.received_message = ''
+        
+        self.glove_state_list = [0, 0]
+        
+        self.glove_currunt_state = GLOVE_STATE_RELEASE
+        # Connect the button to the slot
+        self.sc_start_button.clicked.connect(self.start)
+        
+    def start(self):
+    # Get the values from the input fields
+        self.calibrated_grasping_fes_value = self.g_fes_sc_input.value()
+        self.calibrated_releasing_fes_value = self.r_fes_sc_input.value()
+        self.set_cv_text_fields()
+
+        # # Create a QTimer for monitoring
+        # self.monitoring_timer = QTimer(self)
+        # # Connect the timeout signal to the update_monitoring function
+        # self.monitoring_timer.timeout.connect(self.update_monitoring)
+        # # Start the timer with a 1000ms interval (1 second)
+        # self.monitoring_timer.start(1000)
+
+        # # Create a QTimer for prediction
+        # self.prediction_timer = QTimer(self)
+        # # Connect the timeout signal to the update_prediction function
+        # self.prediction_timer.timeout.connect(self.update_prediction)
+        # # Start the timer with a 2000ms interval (2 seconds)
+        # self.prediction_timer.start(2000)
+        
+        # Create a QTimer for receive
+        self.receive_timer = QTimer(self)
+        # Connect the timeout signal to the update_prediction function
+        self.receive_timer.timeout.connect(self.read_from_port)
+        # Start the timer with a 2000ms interval (2 seconds)
+        self.receive_timer.start(200)
+        
+    def set_cv_text_fields(self):
+        self.r_cv_fes_sc_input.setReadOnly(False)
+        self.g_cv_fes_sc_input.setReadOnly(False)
+        self.g_cv_fes_sc_input.setText(str(self.calibrated_grasping_fes_value))
+        self.r_cv_fes_sc_input.setText(str(self.calibrated_releasing_fes_value))
+        self.g_cv_fes_sc_input.setReadOnly(True)
+        self.r_cv_fes_sc_input.setReadOnly(True)
+        
+    def get_fes_progress(self):
+        self.fes_grasping_bar_value = (self.rmsg_values[FES_ROM_RELEASE]/80)*100
+        self.fes_releasing_bar_value = (self.rmsg_values[FES_ROM_GRASP]/80)*100
+        self.update_fes_progress_bar()
+        
+    def update_fes_progress_bar(self):
+        self.fes_g_progressBar.setProperty("value", self.fes_grasping_bar_value)
+        self.fes_r_progressBar.setProperty("value", self.fes_releasing_bar_value)
+        
+    def get_glove_progress(self):
+        self.glove_grasping_bar_value = (sum(self.rmsg_values))/int(len(self.rmsg_values))
+        self.glove_releasing_bar_value = (sum(self.rmsg_values))/int(len(self.rmsg_values))
+        self.update_glove_progress_bar()
+        
+    def update_glove_progress_bar(self):
+        self.glove_g_progressBar.setProperty("value", self.glove_grasping_bar_value)
+        self.glove_r_progressBar.setProperty("value", self.glove_releasing_bar_value)
+        
+    def update_monitoring(self):
+        if self.rmsg_header == FES_HEADER:
+            if self.rmsg_sub_header == FES_PARAM_SUBHEADER:
+                self.get_fes_progress()
+        elif self.rmsg_header == GLOVE_HEADER:
+            if self.rmsg_sub_header == GLOVE_STATE_SUBHEADER:
+                self.glove_currunt_state = self.rmsg_values[0] 
+            elif self.rmsg_sub_header == GLOVE_ANGLES_SUBHEADER:
+                self.get_glove_progress()
+        
+    def get_predicrion(self):
+        # if self.prediction_list[self.counter] == 0:
+            self.m_prediction_label.setText(self.received_message)
+        # if self.prediction_list[self.counter] == 1:
+            # self.m_prediction_label.setText("Releasing")
+            
+    def update_prediction(self):
+        self.get_predicrion()
+        self.counter += 1
+        if self.counter == 10:
+            self.counter = 0
+            
+    def read_from_port(self):
+        if self.ser.in_waiting > 0:
+            message = self.ser.readline().decode('utf-8').strip()
+            self.received_message = message
+            self.rmsg_header, self.rmsg_sub_header, self.rmsg_values = MessageDecoding(self.received_message)
+            self.update_monitoring()
+            
+    
+        
+        
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    main_window = MainWindowApp()
+    main_window.show()
+    sys.exit(app.exec_())
