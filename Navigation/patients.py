@@ -35,6 +35,7 @@ class PatientsMainWindow(QtWidgets.QMainWindow):
 
 class Ui_PatientsMainWindow(object):
     def setupUi(self, PatientsMainWindow):
+        self.patient_name  = ""
         PatientsMainWindow.setObjectName("PatientsMainWindow")
         PatientsMainWindow.resize(727, 662)
         PatientsMainWindow.setStyleSheet("background-color:#265073;\n"
@@ -292,6 +293,7 @@ class Ui_PatientsMainWindow(object):
         patient_data = db.child("patients").child(patient_name).get()
         if patient_data.val():
             data = patient_data.val()
+            self.patient_name = data.get("Name", "N/A")
             self.label_3.setText(data.get("Name", "N/A"))
             self.label_6.setText(data.get("DOB", "N/A"))
             self.label_8.setText(data.get("Gender", "N/A"))

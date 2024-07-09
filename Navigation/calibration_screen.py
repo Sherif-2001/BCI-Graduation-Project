@@ -784,7 +784,47 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.fetch_data)
         self.timer.start(2000)  # Fetch data every 2 seconds
 
+        self.state_timer = QTimer(self)
+        self.state_timer.timeout.connect(self.state_update)
+        self.state_timer.start(1000)  # Fetch data every 2 seconds
+
         self.pred = True
+        # self.g_value = randrange(15) + 80
+        # self.g_value = [15,17,19,21,23,25,27,29,30,,32,35,40,80,90]
+        # i want list have numbers between 15 and 80 with 1 steo
+        self.g_value = list(range(15, 81, 1))
+        self.idx = 0
+
+
+    def state_update(self):
+        # g_value = randrange(15) + 80
+        if self.idx == (len(self.g_value)-1) :
+            self.state_timer.stop()
+            self.idx = 0
+            # self.pred = not self.pred
+            return
+
+        if self.pred:
+            self.fes_r_progressBar.setProperty("value", 0)
+            self.glove_r_progressBar.setProperty("value", 0)
+
+            self.value=self.g_value[self.idx]
+            self.idx +=1
+            self.fes_g_progressBar.setProperty("value", self.value)
+            self.glove_g_progressBar.setProperty("value", self.value)
+            # time.sleep(0.2)
+
+
+        else:
+            self.fes_g_progressBar.setProperty("value", 0)
+            self.glove_g_progressBar.setProperty("value", 0)
+            self.value=self.g_value[self.idx]
+
+            self.fes_r_progressBar.setProperty("value", self.value)
+            self.glove_r_progressBar.setProperty("value", self.value)
+                # time.sleep(0.2)
+
+        # self.pred = not self.pred
 
     def fetch_data(self):
         config = {
@@ -819,27 +859,27 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.m_prediction_label.setText("Grasp" if self.pred else "Release")
 
-        g_value = randrange(15) + 80
+        # g_value = randrange(15) + 80
 
-        if self.pred:
-            self.fes_r_progressBar.setProperty("value", 0)
-            self.glove_r_progressBar.setProperty("value", 0)
+        # if self.pred:
+        #     self.fes_r_progressBar.setProperty("value", 0)
+        #     self.glove_r_progressBar.setProperty("value", 0)
 
-            for i in range(g_value):
-                self.fes_g_progressBar.setProperty("value", i)
-                self.glove_g_progressBar.setProperty("value", i)
-                time.sleep(0.2)
+        #     for i in range(g_value):
+        #         self.fes_g_progressBar.setProperty("value", i)
+        #         self.glove_g_progressBar.setProperty("value", i)
+        #         time.sleep(0.2)
 
-        else:
-            self.fes_g_progressBar.setProperty("value", 0)
-            self.glove_g_progressBar.setProperty("value", 0)
+        # else:
+        #     self.fes_g_progressBar.setProperty("value", 0)
+        #     self.glove_g_progressBar.setProperty("value", 0)
 
-            for i in range(g_value):
-                self.fes_r_progressBar.setProperty("value", i)
-                self.glove_r_progressBar.setProperty("value", i)
-                time.sleep(0.2)
+        #     for i in range(g_value):
+        #         self.fes_r_progressBar.setProperty("value", i)
+        #         self.glove_r_progressBar.setProperty("value", i)
+        #         time.sleep(0.2)
 
-        self.pred = not self.pred
+        # self.pred = not self.pred
 
     def set_cv_text_fields(self):
         self.r_cv_fes_sc_input.setReadOnly(False)
@@ -929,13 +969,13 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindowApp()
     # Setting up the LSLViewer
-    # streams = resolve_stream('type', 'EEG')
-    # if len(streams) == 0:
-    # raise(RuntimeError("Can't find EEG stream"))
-    # lslv = LSLViewer(streams[0], main_window.fig, main_window.axes, window=5, scale=891)
+    streams = resolve_stream('type', 'EEG')
+    if len(streams) == 0:
+        raise(RuntimeError("Can't find EEG stream"))
+    lslv = LSLViewer(streams[0], main_window.fig, main_window.axes, window=5, scale=891)
 
     # Start the LSLViewer
-    # lslv.start()
+    lslv.start()
 
     main_window.show()
     sys.exit(app.exec_())

@@ -43,6 +43,10 @@ class MainController(QtCore.QObject):
         # self.report_ui.show()
         # self.ReportPage.show()
 
+        # self.patients_window.ui.patient_name
+
+        self.session_ui.update_patient_name("Sherif Ahmed")
+
 
         # Stream for session_window
         # # Setting up the LSLViewer
@@ -73,6 +77,8 @@ class MainController(QtCore.QObject):
         self.patients_window.go_to_new_patient.connect(self.show_new_patient_window)
         self.patients_window.go_back.connect(self.show_login_window)
         self.calibration_window.go_back.connect(self.show_patients_window)
+
+        self.new_patient_window.go_back.connect(self.show_patients_window)
         
         
         # Connect signals for session window
@@ -108,7 +114,8 @@ class MainController(QtCore.QObject):
         self.streams = resolve_stream('type', 'EEG')
         if len(self.streams ) == 0:
             raise(RuntimeError("Can't find EEG stream"))
-        lslv = LSLViewer(self.streams [0], self.calibration_window.fig, self.calibration_window.axes, window=5, scale=891)
+        # lslv = LSLViewer(self.streams [0], self.calibration_window.fig, self.calibration_window.axes, window=5, scale=891)
+        lslv = LSLViewer(self.streams [0], self.calibration_window.fig, self.calibration_window.axes, window=5, scale=57)
         # Start the LSLViewer
         lslv.start()
         self.calibration_window.show()
@@ -119,7 +126,8 @@ class MainController(QtCore.QObject):
         self.streams = resolve_stream('type', 'EEG')
         if len(self.streams ) == 0:
             raise(RuntimeError("Can't find EEG stream"))
-        lslv = LSLViewer(self.streams [0], self.session_ui.fig, self.session_ui.axes, window=5, scale=891)
+        # lslv = LSLViewer(self.streams [0], self.session_ui.fig, self.session_ui.axes, window=5, scale=891)
+        lslv = LSLViewer(self.streams [0], self.session_ui.fig, self.session_ui.axes, window=5, scale=57)
         
         # Start the LSLViewer
         lslv.start()

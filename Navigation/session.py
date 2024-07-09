@@ -122,6 +122,9 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    def update_patient_name(self,patient_name):
+        self.label_3.setText(patient_name)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Session"))
@@ -279,7 +282,8 @@ if __name__ == "__main__":
     streams = resolve_stream('type', 'EEG')
     if len(streams) == 0:
         raise(RuntimeError("Can't find EEG stream"))
-    lslv = LSLViewer(streams[0], ui.fig, ui.axes, window=5, scale=891)
+    # lslv = LSLViewer(streams[0], ui.fig, ui.axes, window=5, scale=891)
+    lslv = LSLViewer(streams[0], ui.fig, ui.axes, window=5, scale=57)
     
     # Start the LSLViewer
     lslv.start()
