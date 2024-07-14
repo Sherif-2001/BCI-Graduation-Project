@@ -40,13 +40,15 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    - **Communication Technologies**: Employs User Datagram Protocol (UDP) and ESP-NOW for low-latency and reliable data transmission.
 
    ### Messages Transmitted Through Modules
-   - **Message 1**: FES initial parameters
-   - **Message 2**: Glove calibration
-   - **Message 3**: Angles acquisition
-   - **Message 4**: State reporting
-   - **Message 5**: Decision (Grasp/Release)
-   - **Message 6**: Channel ON (Grasp/Release)
-   - **Message 7**: Realtime FES parameters
+   | Message | Description | Sender | Receiver
+   | ----------- | ----------- | ----------- | ----------- |
+   | Message 1 | FES Initial Parameters | GUI | FES |
+   | Message 2 | Glove Calibration | FES | Glove |
+   | Message 3 | Angles Acquisition | Glove | GUI |
+   | Message 4 | State Reporting | Glove | GUI |
+   | Message 5 | Decision (Grasp/Release) | GUI | Glove |
+   | Message 6 | Channel ON (Grasp/Release) | Glove | FES |
+   | Message 7 | Realtime FES parameters | FES | GUI |
 
    ### Master CPU (Decision Module)
    - **EEG Signal Processing and AI Model**: Uses Lab Streaming Layer (LSL) protocol to receive EEG signals and AI models to analyze motor imagery patterns.
@@ -71,55 +73,56 @@ To set up the project, follow these steps:
    ```bash
    git clone https://github.com/your-username/hand-rehabilitation-system.git
    cd hand-rehabilitation-system
-Install the required dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-Set up the EEG device and FES system according to the provided documentation.
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Run the GUI application:
+3. Set up the EEG device and FES system according to the provided documentation.
 
-bash
-Copy code
-python gui.py
-Usage
-Calibrate the System:
+4. Run the GUI application:
+   ```bash
+   python main.py
+   ```
 
-Set initial FES parameters.
-Perform glove calibration.
-Begin a Session:
+## Usage
 
-Start the EEG recording.
-Follow the on-screen instructions for Motor Imagery tasks.
-Monitor Progress:
+### Calibrate the System:
+ - Set initial FES parameters.
+ - Perform glove calibration.
 
-Use the GUI to monitor real-time feedback and adjust parameters as needed.
-Review session reports to track patient progress.
-Dataset
-The project utilizes both a public online dataset and collected data for training and validation.
+### Begin a Session:
+ - Start the EEG recording.
+ - Follow the on-screen instructions for Motor Imagery tasks.
 
-Public Dataset: Clinical Brain-Computer Interfaces Challenge WCCI 2020 Glasgow dataset.
-Link to Dataset
-Results
+### Monitor Progress:
+ - Use the GUI to monitor real-time feedback and adjust parameters as needed.
+ - Review session reports to track patient progress.
+
+## Dataset
+ - The project utilizes both a public online dataset and collected data for training and validation.
+ - Public Dataset: Clinical Brain-Computer Interfaces Challenge WCCI 2020 Glasgow dataset. [Dataset](https://github.com/5anirban9/Clinical-Brain-Computer-Interfaces-Challenge-WCCI-2020-Glasgow)
+
+## Results
 The system achieved an average prediction accuracy of 79% for real-time predictions using a 2-second window of EEG data. The use of real-time feedback and adjustable FES parameters significantly improved rehabilitation outcomes compared to fixed parameters.
 
-Future Work
-Collect more data to improve model accuracy.
-Enhance the FES circuit for better control.
-Improve glove sensor sensitivity to reduce delay.
-Team
-Dina Abrahim: AI Integration, Technical Writing
-Neveen Hassan: BCI Module, Data Acquisition
-Omar Mansour: FES Module, Circuit Design
-Omar Elgharbawy: GUI Development, System Integration
-Sherif Ahmed: Feedback Glove, System Testing
-Acknowledgements
+## Future Work
+1. Collect more data to improve model accuracy.
+2. Enhance the FES circuit for better control.
+3. Improve glove sensor sensitivity to reduce delay.
+
+## Team
+- Dina Abrahim: AI Integration, Technical Writing
+- Neveen Hassan: BCI Module, Data Acquisition
+- Omar Mansour: FES Module, Circuit Design
+- Omar Elgharbawy: GUI Development, System Integration
+- Sherif Ahmed: Feedback Glove, System Testing
+
+## Acknowledgements
 Supervised by Dr. Aliaa Rehan Youssef, Department of Systems and Biomedical Engineering, Cairo University.
 
-References
-Choi, I., Kwon, G. H., Lee, S., & Nam, C. S. (2020). Functional electrical stimulation controlled by motor imagery brain-computer interface for rehabilitation. Brain Sciences, 10(8), 512.
-Ang, Kai Keng, et al. "Filter bank common spatial pattern (FBCSP) in brain-computer interface." 2008 IEEE international joint conference on neural networks (IEEE world congress on computational intelligence). IEEE, 2008.
-Zhang, C., Kim, Y. K., & Eskandarian, A. (2021). EEG-inception: an accurate and robust end-to-end neural network for EEG-based motor imagery classification. Journal of Neural Engineering, 18(4), 046014.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## References
+- Choi, I., Kwon, G. H., Lee, S., & Nam, C. S. (2020). Functional electrical stimulation controlled by motor imagery brain-computer interface for rehabilitation. Brain Sciences, 10(8), 512.
+- Ang, Kai Keng, et al. "Filter bank common spatial pattern (FBCSP) in brain-computer interface." 2008 IEEE international joint conference on neural networks (IEEE world congress on computational intelligence). IEEE, 2008.
+- Zhang, C., Kim, Y. K., & Eskandarian, A. (2021). EEG-inception: an accurate and robust end-to-end neural network for EEG-based motor imagery classification. Journal of Neural Engineering, 18(4), 046014.
