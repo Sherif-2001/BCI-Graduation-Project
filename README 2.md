@@ -1,11 +1,23 @@
 # Hand Rehabilitation System Using Functional Electrical Stimulation (FES) Based on Brain-Computer Interface (BCI)
 
+## Table of Contents
+- [Overview](#project-overview)
+- [Features](#features)
+- [System Components](#system-components)
+- [Setup and Installation](#installation)
+- [Usage](#usage)
+- [Dataset](#dataset)
+- [Results and Discussion](#results)
+- [Future Work](#future-work)
+- [Team](#team)
+- [Acknowledgements](#acknowledgements)
+- [References](#references)
+
 ## Project Overview
 
 Hand function impairment, including paralysis or muscle weakness (paresis), often results from neurological disorders such as stroke, spinal cord injury, and traumatic brain injury. This project presents an innovative rehabilitation system that integrates Brain-Computer Interface (BCI) technology with Functional Electrical Stimulation (FES) to address these challenges. The system captures brain electroencephalography (EEG) signals using Motor Imagery techniques, classifies these signals with an AI model, and activates FES to stimulate the relevant muscles, enabling the intended hand movements.
 
 ## Features
-
 - **BCI Module**: Captures and processes EEG signals using Motor Imagery techniques.
 - **FES Module**: Stimulates muscle contraction through electrical impulses.
 - **AI Integration**: Classifies EEG signals to interpret user intentions.
