@@ -81,19 +81,18 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
 
 To set up the project, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/hand-rehabilitation-system.git
-   cd hand-rehabilitation-system
+   git clone https://github.com/Omar-Saad-ELGharbawy/BCI-Graduation-Project
 
-2. Install the required dependencies:
+2. **Install the required dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
 3. Set up the EEG device and FES system according to the provided documentation.
 
-4. Run the GUI application:
+4. **Run the GUI application**:
    ```bash
    python main.py
    ```
