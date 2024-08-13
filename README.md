@@ -20,7 +20,9 @@
 
 ## Project Overview
 
+<p align="justify">
 Hand function impairment, including paralysis or muscle weakness (paresis), often results from neurological disorders such as stroke, spinal cord injury, and traumatic brain injury. This project presents an innovative rehabilitation system that integrates Brain-Computer Interface (BCI) technology with Functional Electrical Stimulation (FES) to address these challenges. The system captures brain electroencephalography (EEG) signals using Motor Imagery techniques, classifies these signals with an AI model, and activates FES to stimulate the relevant muscles, enabling the intended hand movements.
+</p>
 
 <p align="center">
   <img width="460" height="300" src="https://github.com/user-attachments/assets/146abf09-c9fb-4efd-b520-3a545081c26a">
