@@ -234,11 +234,11 @@ The system achieved an average prediction accuracy of 79% for real-time predicti
 ## Team
 | Team Members' Names                                  |   CV    |
 |------------------------------------------------------|:-------:|
-| [Dina Hussam](https://github.com/Dinahussam)         |         |
+| [Dina Hussam](https://github.com/Dinahussam)         |[Dina_Hussam_CV.pdf](https://github.com/user-attachments/files/16605798/Dina_Hussam_CV.pdf)|
 | [Neveen Mohamed](https://github.com/NeveenMohamed)   |         |
 | [Omar Ahmed ](https://github.com/omaranwar21)        |         |
-| [Omar Saad ](https://github.com/Omar-Saad-ELGharbawy)|         |
-| [Sherif Ahmed](https://github.com/Sherif-2001)       |         |
+| [Omar Saad ](https://github.com/Omar-Saad-ELGharbawy)|[Omar_Saad_CV.pdf](https://github.com/user-attachments/files/16605791/Omar_Saad_CV.pdf)|
+| [Sherif Ahmed](https://github.com/Sherif-2001)       |[Sherif_Ahmed_CV.pdf](https://github.com/user-attachments/files/16605803/Sherif_Ahmed_CV.pdf)|
 
 ***
 
