@@ -194,6 +194,7 @@ To set up the project, follow these steps:
 ## Dataset
  - The project utilizes both a public online dataset and collected data for training and validation.
  - Public Dataset: Clinical Brain-Computer Interfaces Challenge WCCI 2020 Glasgow dataset. [Dataset](https://github.com/5anirban9/Clinical-Brain-Computer-Interfaces-Challenge-WCCI-2020-Glasgow)
+ - To request our collected data, please contact any of the project contributors via their emails for more information.
 ***
 
 ## Results
