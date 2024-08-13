@@ -197,7 +197,10 @@ To set up the project, follow these steps:
 ***
 
 ## Results
+<p align="justify">
 The system achieved an average prediction accuracy of 79% for real-time predictions using a 2-second window of EEG data. The use of real-time feedback and adjustable FES parameters significantly improved rehabilitation outcomes compared to fixed parameters.
+</p>
+
 ***
 
 ## Future Work
