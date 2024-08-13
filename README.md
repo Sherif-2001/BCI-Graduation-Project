@@ -124,18 +124,19 @@ The system achieved an average prediction accuracy of 79% for real-time predicti
 3. Improve glove sensor sensitivity to reduce delay.
 
 ## Team
-| Team Members' Names                                  | CV |
+| Team Members' Names                                  |   CV    |
 |------------------------------------------------------|:-------:|
-| [Dina Hussam](https://github.com/Dinahussam)         |    1    |
-| [Omar Ahmed ](https://github.com/omaranwar21)        |    2    |
-| [Omar saad ](https://github.com/Omar-Saad-ELGharbawy)|    2    |
-| [Mohamed Ahmed](https://github.com/MohamedAIsmail)   |    2    |
-| [Neveen Mohamed](https://github.com/NeveenMohamed)   |    2    |
+| [Dina Hussam](https://github.com/Dinahussam)         |         |
+| [Neveen Mohamed](https://github.com/NeveenMohamed)   |         |
+| [Omar Ahmed ](https://github.com/omaranwar21)        |         |
+| [Omar Saad ](https://github.com/Omar-Saad-ELGharbawy)|         |
+| [Sherif Ahmed](https://github.com/Sherif-2001)       |         |
+
 
 ## Acknowledgements
 Supervised by Dr. Aliaa Rehan Youssef, Department of Systems and Biomedical Engineering, Cairo University.
 
 ## References
-- Choi, I., Kwon, G. H., Lee, S., & Nam, C. S. (2020). Functional electrical stimulation controlled by motor imagery brain-computer interface for rehabilitation. Brain Sciences, 10(8), 512.
-- Ang, Kai Keng, et al. "Filter bank common spatial pattern (FBCSP) in brain-computer interface." 2008 IEEE international joint conference on neural networks (IEEE world congress on computational intelligence). IEEE, 2008.
-- Zhang, C., Kim, Y. K., & Eskandarian, A. (2021). EEG-inception: an accurate and robust end-to-end neural network for EEG-based motor imagery classification. Journal of Neural Engineering, 18(4), 046014.
+- [Choi, I., Kwon, G. H., Lee, S., & Nam, C. S. (2020). Functional electrical stimulation controlled by motor imagery brain-computer interface for rehabilitation. Brain Sciences, 10(8), 512.](https://www.mdpi.com/2076-3425/10/8/512)
+- [Ang, Kai Keng, et al. "Filter bank common spatial pattern (FBCSP) in brain-computer interface." 2008 IEEE international joint conference on neural networks (IEEE world congress on computational intelligence). IEEE, 2008.](https://www.researchgate.net/publication/224330976_Filter_Bank_Common_Spatial_Pattern_FBCSP_in_brain-computer_interface)
+- [Zhang, C., Kim, Y. K., & Eskandarian, A. (2021). EEG-inception: an accurate and robust end-to-end neural network for EEG-based motor imagery classification. Journal of Neural Engineering, 18(4), 046014.](https://www.researchgate.net/publication/349984885_EEG-inception_An_accurate_and_robust_end-to-end_neural_network_for_EEG-based_motor_imagery_classification)
