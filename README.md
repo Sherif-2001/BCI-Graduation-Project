@@ -34,9 +34,9 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
 ## Project Features
 🔴 **BCI Module**: Captures and processes EEG signals using Motor Imagery techniques.
 
-🔴 **FES Module**: Stimulates muscle contraction through electrical impulses.
-
 🔴 **AI Integration**: Classifies EEG signals to interpret user intentions.
+
+🔴 **FES Module**: Stimulates muscle contraction through electrical impulses.
 
 🔴 **Feedback Glove**: Provides real-time feedback on hand movements to ensure correct execution.
 
@@ -52,7 +52,7 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    - **EEG Data Acquisition**: Captures brain signals using a Neuron Spectrum EEG device.
    - **Pre-processing**: Applies baseline correction, band-pass filtering, and trial trimming.
    - **Feature Extraction**: Utilizes Common Spatial Patterns (CSP) and Filter Bank Common Spatial Patterns (FBCSP).
-   - **Classification**: Employs AI models such as SVM, MLP, LDA, Logistic Regression, and Extra Trees.
+   - **Classification**: Employs AI models such as SVM, MLP, LDA, Logistic Regression, and Extra Trees, with hard voting applied for ensemble predictions
 <p align="center">
   <img width="460" height="300" src="https://github.com/user-attachments/assets/4e8b1100-1b94-45ea-8b00-f8a2e681f031">
 </p>
@@ -84,7 +84,7 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
 5. **IoT Network**
    - **Integration and Communication Flow**: Ensures coordinated interaction between the Master CPU (Decision Module), FES MC (Action Module), and Glove MC (Feedback Module).
    - **Message Protocol**: Utilizes seven messages for communication, with continuous data exchange for real-time operation.
-   - **Communication Technologies**: Employs User Datagram Protocol (UDP) and ESP-NOW for low-latency and reliable data transmission.
+   - **Communication Technologies**: Employs User Datagram Protocol **(UDP)** and **ESP-NOW** for low-latency and reliable data transmission.
 
    ### Messages Transmitted Through Modules
 <div align="center">
@@ -103,7 +103,7 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
 
 
    ### Master CPU (Decision Module)
-   - **EEG Signal Processing and AI Model**: Uses Lab Streaming Layer (LSL) protocol to receive EEG signals and AI models to analyze motor imagery patterns.
+   - **EEG Signal Processing and AI Model**: Uses Lab Streaming Layer **(LSL)** protocol to receive **EEG** signals and **AI** models to analyze motor imagery patterns.
    - **Glove State Handling**: Manages the operational state of the glove, ensuring proper feedback.
    - **GUI**: Provides an intuitive interface for monitoring and controlling the system.
    - **Reporting**: Gathers and presents performance data and system logs.
@@ -116,8 +116,10 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    ### Glove MC (Feedback Module)
    - **Angles Acquisition**: Continuously measures and reports the angles of the user's fingers.
    - **State Reporting**: Indicates the current state of the glove (grasp or release mode).
+<p align="center">
+  <img width="460" height="300" src="https://github.com/user-attachments/assets/dc9232cf-c3d7-47f9-955a-99d948801798">
+</p>
 ***
-
 ## Project Structure
 
 ```
