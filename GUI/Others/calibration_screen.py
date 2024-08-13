@@ -13,6 +13,7 @@ from PyQt5.QtCore import QTimer
 import serial
 from message_formating import *
 import pyrebase
+from random import randrange
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -26,6 +27,7 @@ import socket
 
 class Ui_MainWindow(object):
     go_back = QtCore.pyqtSignal()
+    go_to_report = QtCore.pyqtSignal()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -606,7 +608,24 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.addWidget(self.widget_39)
         self.verticalLayout_22.addWidget(self.widget_35)
         self.horizontalLayout_12.addWidget(self.widget_32)
+
+        self.pushButton_2 = QtWidgets.QPushButton(self.m_tab)
+        self.pushButton_2.setStyleSheet("QPushButton{\n"
+"border-radius:15;\n"
+"background-color:rgb(0, 150, 0);\n"
+"color:rgb(255, 255, 255);\n"
+"font: 25pt \"Forte\";\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:rgb(0, 194, 0);\n"
+"}")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout.addWidget(self.pushButton_2)
+        self.pushButton_2.clicked.connect(self.go_to_report.emit)
+
         self.verticalLayout.addWidget(self.widget_2)
+
+
         self.tabWidget.addTab(self.m_tab, "")
         self.horizontalLayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -629,12 +648,36 @@ class Ui_MainWindow(object):
         self.r_cv_fes_sc_label.setText(_translate("MainWindow", "Calibrated Value:"))
         self.glove_sc_label.setText(_translate("MainWindow", "Glove State"))
         self.grasping_glove_sc_label.setText(_translate("MainWindow", "Grasping:"))
-        self.grasping_glove_sc_value_label.setText(_translate("MainWindow", "Done"))
+        self.grasping_glove_sc_value_label.setText(
+            _translate("MainWindow", "In Progress")
+        )
         self.releasing_glove_sc_label.setText(_translate("MainWindow", "Releasing:"))
         self.releasing_glove_sc_value_label.setText(
             _translate("MainWindow", "In Progress")
         )
         self.instructions_sc_label.setText(_translate("MainWindow", "Instructions"))
+
+        self.instructions_input.setHtml(
+            _translate(
+                "MainWindow",
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">\n'
+                '<html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">\n'
+                "p, li { white-space: pre-wrap; }\n"
+                "hr { height: 1px; border-width: 0; }\n"
+                'li.unchecked::marker { content: "\\2610"; }\n'
+                'li.checked::marker { content: "\\2612"; }\n'
+                "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">1. Select the grasp type (Cup, Bottle, Ball, Key).<br /></span></p>\n'
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">2. Attach the FES electrodes to the muscle group corresponding to the selected grasp type.<br /></span></p>\n'
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">3. Input the initial FES parameters via the GUI.<br /></span></p>\n'
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">4. Fit the glove onto the patient\'s hand.<br /></span></p>\n'
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">5. Press the Start button on the GUI to begin the calibration session.<br /></span></p>\n'
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">6. Observe the patient\'s hand movement and press the button on the glove when the desired grasp angles are achieved.<br /></span></p>\n'
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">7. Continue monitoring the hand movement and press the button on the glove when the desired release angles are reached.<br /></span></p>\n'
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700;">8. The calibration session is complete.</span></p></body></html>',
+            )
+        )
+
         self.pushButton.setText(_translate("MainWindow", "Back"))
 
         self.sc_start_button.setText(_translate("MainWindow", "     Start     "))
@@ -650,6 +693,8 @@ class Ui_MainWindow(object):
         self.m_glove_label.setText(_translate("MainWindow", "Glove"))
         self.m_g_glove_label.setText(_translate("MainWindow", "Grasping"))
         self.m_r_glove_label.setText(_translate("MainWindow", "Releasing"))
+        self.pushButton_2.setText(_translate("MainWindow", "Add Report"))
+
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.m_tab), _translate("MainWindow", "Monitor")
         )
@@ -739,6 +784,48 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.fetch_data)
         self.timer.start(2000)  # Fetch data every 2 seconds
 
+        self.state_timer = QTimer(self)
+        self.state_timer.timeout.connect(self.state_update)
+        self.state_timer.start(1000)  # Fetch data every 2 seconds
+
+        self.pred = True
+        # self.g_value = randrange(15) + 80
+        # self.g_value = [15,17,19,21,23,25,27,29,30,,32,35,40,80,90]
+        # i want list have numbers between 15 and 80 with 1 steo
+        self.g_value = list(range(15, 81, 1))
+        self.idx = 0
+
+
+    def state_update(self):
+        # g_value = randrange(15) + 80
+        if self.idx == (len(self.g_value)-1) :
+            self.state_timer.stop()
+            self.idx = 0
+            # self.pred = not self.pred
+            return
+
+        if self.pred:
+            self.fes_r_progressBar.setProperty("value", 0)
+            self.glove_r_progressBar.setProperty("value", 0)
+
+            self.value=self.g_value[self.idx]
+            self.idx +=1
+            self.fes_g_progressBar.setProperty("value", self.value)
+            self.glove_g_progressBar.setProperty("value", self.value)
+            # time.sleep(0.2)
+
+
+        else:
+            self.fes_g_progressBar.setProperty("value", 0)
+            self.glove_g_progressBar.setProperty("value", 0)
+            self.value=self.g_value[self.idx]
+
+            self.fes_r_progressBar.setProperty("value", self.value)
+            self.glove_r_progressBar.setProperty("value", self.value)
+                # time.sleep(0.2)
+
+        # self.pred = not self.pred
+
     def fetch_data(self):
         config = {
             "apiKey": "AIzaSyBaf2PZ9lRnkpM952pBDlfGCxxEjcvU4Bk",
@@ -759,6 +846,40 @@ class MainWindowApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
             self.g_cv_fes_sc_input.setText(values[0])
             self.r_cv_fes_sc_input.setText(values[1])
+
+        data2 = db.child("Glove").get()
+        if data2.each is not None:
+            values2 = [item.val() for item in data2.each()]
+            self.grasping_glove_sc_value_label.setText(
+                "In Progress" if not values2[0] else "Done"
+            )
+            self.releasing_glove_sc_value_label.setText(
+                "In Progress" if not values2[1] else "Done"
+            )
+
+        self.m_prediction_label.setText("Grasp" if self.pred else "Release")
+
+        # g_value = randrange(15) + 80
+
+        # if self.pred:
+        #     self.fes_r_progressBar.setProperty("value", 0)
+        #     self.glove_r_progressBar.setProperty("value", 0)
+
+        #     for i in range(g_value):
+        #         self.fes_g_progressBar.setProperty("value", i)
+        #         self.glove_g_progressBar.setProperty("value", i)
+        #         time.sleep(0.2)
+
+        # else:
+        #     self.fes_g_progressBar.setProperty("value", 0)
+        #     self.glove_g_progressBar.setProperty("value", 0)
+
+        #     for i in range(g_value):
+        #         self.fes_r_progressBar.setProperty("value", i)
+        #         self.glove_r_progressBar.setProperty("value", i)
+        #         time.sleep(0.2)
+
+        # self.pred = not self.pred
 
     def set_cv_text_fields(self):
         self.r_cv_fes_sc_input.setReadOnly(False)
@@ -848,13 +969,13 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindowApp()
     # Setting up the LSLViewer
-    # streams = resolve_stream('type', 'EEG')
-    # if len(streams) == 0:
-    # raise(RuntimeError("Can't find EEG stream"))
-    # lslv = LSLViewer(streams[0], main_window.fig, main_window.axes, window=5, scale=891)
+    streams = resolve_stream('type', 'EEG')
+    if len(streams) == 0:
+        raise(RuntimeError("Can't find EEG stream"))
+    lslv = LSLViewer(streams[0], main_window.fig, main_window.axes, window=5, scale=891)
 
     # Start the LSLViewer
-    # lslv.start()
+    lslv.start()
 
     main_window.show()
     sys.exit(app.exec_())

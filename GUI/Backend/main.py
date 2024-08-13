@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
 from login import LoginPageMainWindow
 from patients import PatientsMainWindow
-from calibration_screen import MainWindowApp as CalibrationMainWindow
+from GUI.Others.calibration_screen import MainWindowApp as CalibrationMainWindow
 from session import Ui_MainWindow as SessionMainWindow
 from LSLViewer import LSLViewer
 

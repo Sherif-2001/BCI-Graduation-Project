@@ -1,29 +1,18 @@
-# -*- coding: utf-8 -*-
 """
 Contain the implementation of the FBCSP algorithm (binary version). 
-
-@author: Alberto Zancanaro (Jesus)
-@organization: University of Padua (Italy)
 """
 
-#%%
 import numpy as np
-
 import matplotlib.pyplot as plt
-
 import scipy.signal
 import scipy.linalg as la
-
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 from sklearn.feature_selection import mutual_info_classif as MIBIF
 import sklearn
 
 
-#%%
-
-class FBCSP_V4():
-    
-    def __init__(self, data_dict, fs, n_w = 2, n_features = 4, freqs_band = None, filter_order = 3, classifier = None, print_var = True, train_ratio=0.75):
+class FBCSP_V5():
+    def __init__(self, data_dict, fs, n_w = 2, n_features = 4, freqs_band = None, filter_order = 3, print_var = True):
         self.fs = fs
         self.trials_dict = data_dict
         self.n_w = n_w
@@ -31,7 +20,6 @@ class FBCSP_V4():
         self.n_trials_class_1 = data_dict[list(data_dict.keys())[0]].shape[0]
         self.n_trials_class_2 = data_dict[list(data_dict.keys())[1]].shape[0]
         self.print_var = print_var
-        self.train_ratio = train_ratio
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         #Filter data section
         
@@ -65,13 +53,9 @@ class FBCSP_V4():
         self.spatialFilteringAndFeatureExtraction()
         
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # Training of the classifier
-        if(classifier != None): 
-            self.trainClassifier(classifier = classifier, train_ratio=self.train_ratio)
-        else: 
-            self.trainClassifier(train_ratio=self.train_ratio) 
+        #Feature and labels extraction
+        self.extract_DataMatrix_and_labels()
 
-        
     def filterBankFunction(self, filter_order = 3):
         """
         Function that apply fhe fitlering for each pair of frequencies in the list self.freqs.
@@ -100,7 +84,6 @@ class FBCSP_V4():
             # Save the filtered signal in the list
             self.filtered_band_signal_list.append(filt_trial_dict)
         
-    
     def bandFilterTrials(self, trials_matrix, low_f, high_f, filter_order = 3):
         """
         Applying a pass-band fitlering to the data. The filter implementation was done with scipy.signal
@@ -121,7 +104,7 @@ class FBCSP_V4():
         Returns
         -------
         filter_trails_matrix : numpy matrix
-             Numpy matrix with the various filtered EEG trials. The dimensions of the matrix must be n_trial x n_channel x n_samples.
+            Numpy matrix with the various filtered EEG trials. The dimensions of the matrix must be n_trial x n_channel x n_samples.
     
         """
         
@@ -136,9 +119,8 @@ class FBCSP_V4():
         if(low_bound == high_bound): low_bound, high_bound = 0, 1
         
         b, a = scipy.signal.butter(filter_order, [low_bound, high_bound], 'bandpass')
-          
+        
         return scipy.signal.filtfilt(b, a, trials_matrix)
-    
     
     def evaluateW(self):
         """
@@ -178,7 +160,6 @@ class FBCSP_V4():
             W = np.dot(np.transpose(U), P)
             
             self.W_list_band.append(W)
-      
     
     def trialCovariance(self, trials):
         """
@@ -208,7 +189,6 @@ class FBCSP_V4():
             
         return mean_cov
     
-    
     def whitening(self, sigma, mode = 2):
         """
         Calculate the whitening matrix for the input matrix sigma
@@ -227,7 +207,7 @@ class FBCSP_V4():
         """
         [u, s, vh] = np.linalg.svd(sigma)
         
-          
+        
         if(mode != 1 and mode != 2): mode == 1
         
         if(mode == 1):
@@ -240,16 +220,15 @@ class FBCSP_V4():
             # eigenvalue decomposition of the covariance matrix
             d, V = np.linalg.eigh(sigma)
             fudge = 10E-18
-         
+        
             # A fudge factor can be used so that eigenvectors associated with small eigenvalues do not get overamplified.
             D = np.diag(1. / np.sqrt(d+fudge))
-         
+        
             # whitening matrix
             x = np.dot(np.dot(V, D), V.T)
             
         return x
         
-    
     def spatialFilteringAndFeatureExtraction(self):
         # Cycle through frequency band and relative CSP filter
         for filt_trial_dict, W in zip(self.filtered_band_signal_list, self.W_list_band):
@@ -273,7 +252,6 @@ class FBCSP_V4():
         # Select features to use for classification
         self.classifier_features = self.selectFeatures()
         
-        
     def spatialFilteringW(self, trials, W):
         # Allocate memory for the spatial fitlered trials
         trials_csp = np.zeros(trials.shape)
@@ -282,7 +260,6 @@ class FBCSP_V4():
         for i in range(trials.shape[0]): trials_csp[i, :, :] = W.dot(trials[i, :, :])
             
         return trials_csp
-    
     
     def logVarEvaluation(self, trials):
         """
@@ -316,9 +293,7 @@ class FBCSP_V4():
         """
         Alternative method for features evaluation.
         Implemented but not used. Very low performance
-
         """
-        
         # Create index for select the first and last n column and select them
         idx = []
         for i in range(self.n_features): idx.append(i)
@@ -343,7 +318,6 @@ class FBCSP_V4():
             
         return features
             
-            
     def computeFeaturesMutualInformation(self):
         """
         Select the first and last n columns of the various features matrix and compute their mutual inforamation.
@@ -353,7 +327,6 @@ class FBCSP_V4():
         -------
         mutual_information_list : List of numpy matrix
             List with the mutual information of the various features.
-
         """
         
         mutual_information_list = []
@@ -378,7 +351,6 @@ class FBCSP_V4():
             mutual_information_list.append(tmp_mutual_information)
             
         return mutual_information_list
-    
     
     def changeShapeMutualInformationList(self):
         # 1D-Array with all the mutual information value
@@ -406,13 +378,11 @@ class FBCSP_V4():
                 
         return mutual_information_vector, other_info_matrix
     
-    
     def computeMutualInformation2(self):
         """
         Method add to test a different type of mutual information evaluation find in another paper. 
         The results are the same that with the original method. 
         So this method is impemented but not used.
-
         """
 
         tot_trials = self.n_trials_class_1 + self.n_trials_class_2
@@ -442,7 +412,6 @@ class FBCSP_V4():
         
         self.mutual_information_vector_V2 = MIBIF(features_matrix, label_vector)
             
-    
     def selectFeatures(self):
         """
         Select n features for classification. In this case n is equal to 2 * self.n_features.
@@ -454,7 +423,6 @@ class FBCSP_V4():
         -------
         complete_list_of_features : List of tuple
             List that contatin the band for the filter and the position inside the original band.
-
         """
         
         # Sort features in order of mutual information
@@ -492,7 +460,6 @@ class FBCSP_V4():
                 complete_list_of_features.append(features_item)
                 
         return sorted(complete_list_of_features)
-    
     
     def extractFeaturesForTraining(self):
         # Tracking variable of the band
@@ -538,20 +505,9 @@ class FBCSP_V4():
                 
         return features_1, features_2
     
-        
-    def trainClassifier(self, train_ratio = 0.75, classifier = None):
+    def extract_DataMatrix_and_labels(self):
         """
-        Divide the data in train set and test set and used the data to train the classifier.
-
-        Parameters
-        ----------
-        n_features : int, optional
-            The number of mixture channel to use in the classifier. It must be even and at least as big as 2. The default is 2.
-        train_ratio : doble, optional
-            The proportion of the data to used as train dataset. The default is 0.75.
-        classifier : sklearnn classifier, optional
-            Classifier used for the problem. It must be a sklearn classifier. If no classfier was provided the fucntion use the LDA classifier.
-
+        Extract Features and labels of the data and data matrix
         """
         features_1, features_2 = self.extractFeaturesForTraining()
 
@@ -565,7 +521,6 @@ class FBCSP_V4():
         data_matrix = np.zeros((features_1.shape[0] + features_2.shape[0], features_1.shape[1]))
         data_matrix[0:features_1.shape[0], :] = features_1
         data_matrix[features_1.shape[0]:, :] = features_2
-        # vip point may retrun features from it
 
         self.tmp_data_matrix = data_matrix
         
@@ -574,101 +529,34 @@ class FBCSP_V4():
         label[0:features_1.shape[0]] = 1
         label[features_1.shape[0]:] = 2
 
-        # vip point may retrun labels from it
-
         self.tmp_label = label
         if(self.print_var): print("Labels : ", self.tmp_label)
         if(self.print_var): print("Label size ", self.tmp_label.shape)
-        
-        # Create the label dict
-        self.tmp_label_dict = {}
-        keys = list(self.features_band_list[0].keys())
-        self.tmp_label_dict[1] = keys[0]
-        self.tmp_label_dict[2] = keys[1]
-        
-        # vip point do not need to shuffle with this method
 
-        # Shuffle the data
-        perm = np.random.permutation(len(label))
-        label = label[perm]
-        data_matrix = data_matrix[perm, :]
-        
-        # Select the portion of data used during training
-        if(train_ratio <= 0 or train_ratio >= 1): train_ratio = 0.75
-        index_training = int(data_matrix.shape[0] * train_ratio)
-        train_data = data_matrix[0:index_training, :]
-        train_label = label[0:index_training]
-        print(train_label)
-        test_data = data_matrix[index_training:, :]
-        test_label = label[index_training:]
-        self.tmp_train = [train_data, train_label]
-        self.tmp_test = [test_data, test_label]
-        
-        # Select classifier
-        if(classifier == None): self.classifier = LDA()
-        else: self.classifier = classifier
-        
-        # Train Classifier
-        self.classifier.fit(train_data, train_label)
-        
-        # we want to use kohen's kappa score instead of accuracy (default one)
-        # scorer = sklearn.metrics.make_scorer(sklearn.metrics.cohen_kappa_score) 
-        scorer = sklearn.metrics.make_scorer(sklearn.metrics.accuracy_score) #uncomment this if you wanna use accuracy
-        # we will use these variables to get scores and take their mean for manual cross validation
-        self.train_score = scorer(self.classifier, train_data, train_label)
-        self.valid_score = scorer(self.classifier, test_data, test_label)
-        
-        if(self.print_var): print("Score on Training set: ", self.train_score)
-        
-        # Test parameters
-        if(self.print_var): print("Score on Validation set: ", self.valid_score, "\n")
-        
-        # print("total: ", self.classifier.score(train_data, train_label) * self.classifier.score(test_data, test_label))
-        
-        
-    def evaluateTrial(self, trials_matrix, plot = True):
+
+    def extractTrialFeatures(self, trials_matrix):
         """
-        Evalaute trial/trials given in input
+        Extrat trial/trials features given in input
 
         Parameters
         ----------
         trials_matrix : Numpy 3D matrix
             Input matrix of trials. The dimension MUST BE "n. trials x n. channels x n.samples".
             Also in case of single trials the input input dimension must be "1 x n. channels x n.samples".
-        plot : Boolean, optional
-            If set to true will plot the features of the trial. The default is True.
 
         Returns
         -------
-        y : Numpy vector
-            Vector with the label of the respective trial. The length of the vector is the number of trials.
-            The label are 1 for class 1 and 2 for class 2.
-        
-        y_prob : Numpy matrix
-            Vector with the label of the respective trial. The length of the vector is the number of trials.
-            The label are 1 for class 1 and 2 for class 2.
-
+        features :
+            FBCSP Features of the trials.
         """
         
         # Compute and extract the features for the training
-        features_input = self.extractFeatures(trials_matrix)
-        self. a = features_input
+        features = self.extractFeatures(trials_matrix)
+        
+        print(features.shape)
+        
+        return features
 
-        # Classify the trials
-        # print(features_input.shape)
-        y = self.classifier.predict(features_input)
-        
-        # Evaluate the probabilty
-        # if(self.classifier.__class__.__name__ == 'LinearDiscriminantAnalysis'):
-        #     y_prob = self.classifier.predict_proba(features_input)
-        # else:
-        #     y_prob = np.zeros(2)
-            
-        y_prob = self.classifier.predict_proba(features_input)
-        
-        return y, y_prob
-    
-    
     def extractFeatures(self, trials_matrix): 
         # List for the features
         features_list = []
@@ -703,119 +591,3 @@ class FBCSP_V4():
             features_input[:, i] = features_list[feature_position[0]][:, feature_position[1]]
             
         return features_input
-    
-    
-    def plotFeaturesSeparateTraining(self, width = 0.3, figsize = (15, 30)):
-        fig, axs = plt.subplots(len(self.features_band_list), 1, figsize = figsize)
-        for features_dict, ax in zip(self.features_band_list, axs):
-            keys = list(features_dict.keys())
-            features_1 = features_dict[keys[0]]
-            features_2 = features_dict[keys[1]]
-            
-            x1 = np.linspace(1, features_1.shape[1], features_1.shape[1])
-            x2 = x1 + 0.35
-            
-            y1 = np.mean(features_1, 0)
-            y2 = np.mean(features_2, 0)
-            
-            ax.bar(x1, y1, width = width, color = 'b', align='center')
-            ax.bar(x2, y2, width = width, color = 'r', align='center')
-            ax.set_xlim(0.5, 59.5)
-         
-            
-    def plotFeaturesScatterTraining(self, selected_features = [0, -1], figsize = (15, 10)):
-        """
-        Plot a mean of the two selected features. 
-
-        Parameters
-        ----------
-        selected_features : List, optional
-            Features to plot. By default the first and the last one are selected. The default is [0, -1].
-            It MUST BE a list of length 2.
-        figsize : Tuple, optional
-            Dimension of the figure. The default is (15, 10).
-
-        """
-        # Check the selected_featurest
-        if(type(selected_features) != list): selected_features = [0, -1]
-        else:
-            # Check length
-            if(len(selected_features) != 2): selected_features = [0, -1]
-            # Check first features
-            if(selected_features[0] >= self.n_features_for_classification): selected_features = [0, -1]
-            if(selected_features[0] < -self.n_features_for_classification): selected_features = [0, -1]
-            # Check second features
-            if(selected_features[1] >= self.n_features_for_classification): selected_features = [0, -1]
-            if(selected_features[1] < -self.n_features_for_classification): selected_features = [0, -1]
-            
-        # Plot cretion
-        fig, ax = plt.subplots(figsize = figsize)
-        
-        # Features extraction
-        features_1, features_2 = self.extractFeaturesForTraining()
-        
-        # Plot features
-        ax.scatter(features_1[:, selected_features[0]], features_1[:, selected_features[1]], color = 'b')
-        ax.scatter(features_2[:, selected_features[0]], features_2[:, selected_features[1]], color = 'r')
-        
-        if(self.classifier.__class__.__name__ == 'LinearDiscriminantAnalysis' or (self.classifier.__class__.__name__ == 'SVC' and self.classifier.kernel == 'linear')):
-            coef = self.classifier.coef_
-            bias = self.classifier.intercept_[0]
-            
-            min_x = min(min(features_1[:, 0]), min(features_2[:, 0]))
-            max_x = max(max(features_1[:, 0]), max(features_2[:, 0]))
-            x = np.linspace(min_x, max_x)
-            
-            y1 = - (bias + coef[0, selected_features[0]] * x) / coef[0, selected_features[1]]
-            
-            
-            ax.plot(x, y1, color = 'k')
-        
-            
-    def plotFeaturesScatter(self, trials_matrix, selected_features = [0, -1], figsize = (15, 10)):
-        
-        # Check the selected_featurest
-        if(type(selected_features) != list): selected_features = [0, -1]
-        else:
-            # Check length
-            if(len(selected_features) != 2): selected_features = [0, -1]
-            # Check first features
-            if(selected_features[0] >= self.n_features_for_classification): selected_features = [0, -1]
-            if(selected_features[0] < -self.n_features_for_classification): selected_features = [0, -1]
-            # Check second features
-            if(selected_features[1] >= self.n_features_for_classification): selected_features = [0, -1]
-            if(selected_features[1] < -self.n_features_for_classification): selected_features = [0, -1]
-        
-        # Features extraction
-        features_input = self.extractFeatures(trials_matrix)
-        
-        # Plotting
-        fig, ax = plt.subplots(figsize = figsize)
-        ax.scatter(features_input[:, selected_features[0]], features_input[:, selected_features[1]])
-          
-        
-    def plotFeatuersTogether(self, width = 0.3, figsize = (15, 10)):
-        
-        y1 = np.zeros(0)
-        y2 = np.zeros(0)
-        for features_dict in self.features_band_list:
-            keys = list(features_dict.keys())
-            features_1 = features_dict[keys[0]]
-            features_2 = features_dict[keys[1]]
-        
-            tmp_y1 = np.mean(features_1, 0)
-            tmp_y2 = np.mean(features_2, 0)
-            
-            y1 = np.concatenate((y1, tmp_y1))
-            y2 = np.concatenate((y2, tmp_y2))
-            
-        y1 = np.sort(y1)
-        y2 = np.flip(np.sort(y2))
-        
-        x1 = np.linspace(1, len(y1), len(y1))
-        x2 = x1 + 0.35
-        
-        fig, ax = plt.subplots(figsize = figsize)
-        ax.bar(x1, y1, width = width, color = 'b', align='center')
-        ax.bar(x2, y2, width = width, color = 'r', align='center')
-        
