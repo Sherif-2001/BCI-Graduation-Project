@@ -23,7 +23,7 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
 
 <p align="center">
   <img width="460" height="300" src="https://github.com/user-attachments/assets/146abf09-c9fb-4efd-b520-3a545081c26a">
-  <img width="460" height="300" src="https://github.com/user-attachments/assets/eb0f9bfe-de5b-4709-8c67-949d8759d5e7">
+  <img width="460" height="300" src="https://github.com/user-attachments/assets/28548f3e-d371-4f64-bb9a-d6a52a30f7b2">
 </p>
 
 ***
