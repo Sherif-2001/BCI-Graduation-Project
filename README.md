@@ -48,7 +48,9 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    - **Pre-processing**: Applies baseline correction, band-pass filtering, and trial trimming.
    - **Feature Extraction**: Utilizes Common Spatial Patterns (CSP) and Filter Bank Common Spatial Patterns (FBCSP).
    - **Classification**: Employs AI models such as SVM, MLP, LDA, Logistic Regression, and Extra Trees.
-![EEG Data Aq](https://github.com/user-attachments/assets/4e8b1100-1b94-45ea-8b00-f8a2e681f031)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/user-attachments/assets/4e8b1100-1b94-45ea-8b00-f8a2e681f031">
+</p>
 
 2. **Functional Electrical Stimulation (FES)**
    - **Stimulation Parameters**: Adjustable frequency, intensity, and pulse duration.
