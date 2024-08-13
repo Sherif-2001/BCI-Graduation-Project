@@ -1,9 +1,11 @@
 # Hand Rehabilitation System Using Functional Electrical Stimulation (FES) Based on Brain-Computer Interface (BCI)
+***
 
 ## Table of Contents
 - [Overview](#project-overview)
-- [Features](#features)
+- [Project Features](#Project-Features)
 - [System Components](#system-components)
+- [Project Structure](#Project-Structure) 
 - [Setup and Installation](#installation)
 - [Usage](#usage)
 - [Dataset](#dataset)
@@ -13,17 +15,26 @@
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
 
+***
+
 ## Project Overview
 
 Hand function impairment, including paralysis or muscle weakness (paresis), often results from neurological disorders such as stroke, spinal cord injury, and traumatic brain injury. This project presents an innovative rehabilitation system that integrates Brain-Computer Interface (BCI) technology with Functional Electrical Stimulation (FES) to address these challenges. The system captures brain electroencephalography (EEG) signals using Motor Imagery techniques, classifies these signals with an AI model, and activates FES to stimulate the relevant muscles, enabling the intended hand movements.
+![project-overview](https://github.com/user-attachments/assets/eb0f9bfe-de5b-4709-8c67-949d8759d5e7) ![BCI protocols](https://github.com/user-attachments/assets/146abf09-c9fb-4efd-b520-3a545081c26a)
 
-## Features
+
+
+***
+
+## Project Features
 - **BCI Module**: Captures and processes EEG signals using Motor Imagery techniques.
 - **FES Module**: Stimulates muscle contraction through electrical impulses.
 - **AI Integration**: Classifies EEG signals to interpret user intentions.
 - **Feedback Glove**: Provides real-time feedback on hand movements to ensure correct execution.
 - **GUI**: Monitors system parameters, allows EEG recording, and maintains a patient database with electronic reports.
 - **IoT Network**: Integrates all system components for seamless communication and control.
+
+***
 
 ## System Components
 
@@ -32,19 +43,25 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    - **Pre-processing**: Applies baseline correction, band-pass filtering, and trial trimming.
    - **Feature Extraction**: Utilizes Common Spatial Patterns (CSP) and Filter Bank Common Spatial Patterns (FBCSP).
    - **Classification**: Employs AI models such as SVM, MLP, LDA, Logistic Regression, and Extra Trees.
+![EEG Data Aq](https://github.com/user-attachments/assets/4e8b1100-1b94-45ea-8b00-f8a2e681f031)
 
 2. **Functional Electrical Stimulation (FES)**
    - **Stimulation Parameters**: Adjustable frequency, intensity, and pulse duration.
    - **Therapy Protocols**: Supports various hand function training patterns.
    - **Safety Features**: Includes isolation transformers, diodes, digital potentiometers, and software protection.
+![FES-Stimulation](https://github.com/user-attachments/assets/e3bde33c-27e2-40ef-ac32-78570f8b6d19)
 
 3. **Feedback Glove**
    - **Design**: Comfortable and flexible, equipped with sensors to measure finger angles.
    - **Functionality**: Uses hall effect sensors to detect magnetic field changes during finger movements.
+![glove](https://github.com/user-attachments/assets/f69c7d85-f505-4c2a-af0a-eadcd311519d)
 
 4. **Graphical User Interface (GUI)**
    - **Control and Monitoring**: Provides an intuitive interface for system control and parameter monitoring.
    - **Reporting**: Gathers and presents performance data and system logs for analysis.
+![Patients](https://github.com/user-attachments/assets/62f9e5a1-bdbc-4577-9ab6-5f5b366c1679)
+![Monitor 2](https://github.com/user-attachments/assets/34ef56d9-47b4-41de-8245-2eb38a339f63)
+![Login](https://github.com/user-attachments/assets/d4ef990e-f213-45e5-bdf6-7b911b15a946)
 
 5. **IoT Network**
    - **Integration and Communication Flow**: Ensures coordinated interaction between the Master CPU (Decision Module), FES MC (Action Module), and Glove MC (Feedback Module).
@@ -76,6 +93,11 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    ### Glove MC (Feedback Module)
    - **Angles Acquisition**: Continuously measures and reports the angles of the user's fingers.
    - **State Reporting**: Indicates the current state of the glove (grasp or release mode).
+***
+
+## Project Structure
+
+***
 
 ## Installation
 
@@ -96,6 +118,7 @@ To set up the project, follow these steps:
    ```bash
    python main.py
    ```
+***
 
 ## Usage
 
@@ -110,18 +133,22 @@ To set up the project, follow these steps:
 ### Monitor Progress:
  - Use the GUI to monitor real-time feedback and adjust parameters as needed.
  - Review session reports to track patient progress.
+***
 
 ## Dataset
  - The project utilizes both a public online dataset and collected data for training and validation.
  - Public Dataset: Clinical Brain-Computer Interfaces Challenge WCCI 2020 Glasgow dataset. [Dataset](https://github.com/5anirban9/Clinical-Brain-Computer-Interfaces-Challenge-WCCI-2020-Glasgow)
+***
 
 ## Results
 The system achieved an average prediction accuracy of 79% for real-time predictions using a 2-second window of EEG data. The use of real-time feedback and adjustable FES parameters significantly improved rehabilitation outcomes compared to fixed parameters.
+***
 
 ## Future Work
 1. Collect more data to improve model accuracy.
 2. Enhance the FES circuit for better control.
 3. Improve glove sensor sensitivity to reduce delay.
+***
 
 ## Team
 | Team Members' Names                                  |   CV    |
@@ -132,9 +159,11 @@ The system achieved an average prediction accuracy of 79% for real-time predicti
 | [Omar Saad ](https://github.com/Omar-Saad-ELGharbawy)|         |
 | [Sherif Ahmed](https://github.com/Sherif-2001)       |         |
 
+***
 
 ## Acknowledgements
 Supervised by Dr. Aliaa Rehan Youssef, Department of Systems and Biomedical Engineering, Cairo University.
+***
 
 ## References
 - [Choi, I., Kwon, G. H., Lee, S., & Nam, C. S. (2020). Functional electrical stimulation controlled by motor imagery brain-computer interface for rehabilitation. Brain Sciences, 10(8), 512.](https://www.mdpi.com/2076-3425/10/8/512)
