@@ -30,19 +30,17 @@ BCI-FES-Rehabilitation-System
 │  │  │  ├─ Assets
 │  │  │  │  ├─ Imgs
 │  │  ├─ Glove
-│  │  │  ├─ glove.py
+│  │  │  ├─ boot.py
+│  │  │  ├─ ESPnow.py
+│  │  │  ├─ hall.py
+│  │  │  ├─ mac.py
+│  │  │  ├─ message_formating.py
+│  │  │  ├─ NetworkSetup.py
 │  │  ├─ FES
-│  │  │  ├─ FES.py
-
-├─ docs
-│  ├─ setup_guide.md
-│  ├─ usage_instructions.md
-│  ├─ system_architecture.md
-├─ videos
-│  ├─ demo_video.mp4
-│  ├─ usage_tutorial.mp4
+│  │  │  ├─ boot.py
+│  │  │  ├─ ESPnow.py
+│  │  │  ├─ message_formating.py
+│  │  │  ├─ NetworkSetup.py
 ├─ README.md
-├─ requirements.txt
-
 ```
 ***
