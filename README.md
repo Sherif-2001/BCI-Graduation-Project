@@ -32,12 +32,12 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
 ***
 
 ## Project Features
-- 🔴 **BCI Module**: Captures and processes EEG signals using Motor Imagery techniques.
-- 🔴 **FES Module**: Stimulates muscle contraction through electrical impulses.
-- 🔴 **AI Integration**: Classifies EEG signals to interpret user intentions.
-- 🔴 **Feedback Glove**: Provides real-time feedback on hand movements to ensure correct execution.
-- 🔴 **GUI**: Monitors system parameters, allows EEG recording, and maintains a patient database with electronic reports.
-- 🔴 **IoT Network**: Integrates all system components for seamless communication and control.
+🔴 **BCI Module**: Captures and processes EEG signals using Motor Imagery techniques.
+🔴 **FES Module**: Stimulates muscle contraction through electrical impulses.
+🔴 **AI Integration**: Classifies EEG signals to interpret user intentions.
+🔴 **Feedback Glove**: Provides real-time feedback on hand movements to ensure correct execution.
+🔴 **GUI**: Monitors system parameters, allows EEG recording, and maintains a patient database with electronic reports.
+🔴 **IoT Network**: Integrates all system components for seamless communication and control.
 
 ***
 
