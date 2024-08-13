@@ -82,15 +82,20 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    - **Communication Technologies**: Employs User Datagram Protocol (UDP) and ESP-NOW for low-latency and reliable data transmission.
 
    ### Messages Transmitted Through Modules
-   | Message | Description | Sender | Receiver
-   | ----------- | ----------- | ----------- | ----------- |
-   | Message 1 | FES Initial Parameters | GUI | FES |
-   | Message 2 | Glove Calibration | FES | Glove |
-   | Message 3 | Angles Acquisition | Glove | GUI |
-   | Message 4 | State Reporting | Glove | GUI |
-   | Message 5 | Decision (Grasp/Release) | GUI | Glove |
-   | Message 6 | Channel ON (Grasp/Release) | Glove | FES |
-   | Message 7 | Realtime FES parameters | FES | GUI |
+<div align="center">
+
+| Message | Description | Sender | Receiver |
+|---------|-------------|--------|----------|
+| Message 1 | FES Initial Parameters | GUI | FES |
+| Message 2 | Glove Calibration | FES | Glove |
+| Message 3 | Angles Acquisition | Glove | GUI |
+| Message 4 | State Reporting | Glove | GUI |
+| Message 5 | Decision (Grasp/Release) | GUI | Glove |
+| Message 6 | Channel ON (Grasp/Release) | Glove | FES |
+| Message 7 | Realtime FES parameters | FES | GUI |
+
+</div>
+
 
    ### Master CPU (Decision Module)
    - **EEG Signal Processing and AI Model**: Uses Lab Streaming Layer (LSL) protocol to receive EEG signals and AI models to analyze motor imagery patterns.
