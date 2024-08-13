@@ -117,7 +117,7 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    - **Angles Acquisition**: Continuously measures and reports the angles of the user's fingers.
    - **State Reporting**: Indicates the current state of the glove (grasp or release mode).
 <p align="center">
-  <img width="460" height="300" src="https://github.com/user-attachments/assets/dc9232cf-c3d7-47f9-955a-99d948801798">
+  <img width="460" height="500" src="https://github.com/user-attachments/assets/dc9232cf-c3d7-47f9-955a-99d948801798">
 </p>
 ***
 ## Project Structure
