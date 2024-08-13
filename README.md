@@ -224,7 +224,7 @@ The system achieved an average prediction accuracy of 79% for real-time predicti
 ***
 ## Technologies
 <p align="center">
-  <img width="460" height="600" src="https://github.com/user-attachments/assets/076d5e3c-aa75-4b48-a6c8-5fdc81bc811e">
+  <img width="600" height="500" src="https://github.com/user-attachments/assets/076d5e3c-aa75-4b48-a6c8-5fdc81bc811e">
 </p>
 
 ***
