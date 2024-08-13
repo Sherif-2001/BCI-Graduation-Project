@@ -1,5 +1,5 @@
 # Hand Rehabilitation System Using Functional Electrical Stimulation (FES) Based on Brain-Computer Interface (BCI)
-***
+
 
 ## Table of Contents
 - [Overview](#project-overview)
