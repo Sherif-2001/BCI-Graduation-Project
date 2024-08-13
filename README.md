@@ -124,11 +124,13 @@ The system achieved an average prediction accuracy of 79% for real-time predicti
 3. Improve glove sensor sensitivity to reduce delay.
 
 ## Team
-- Dina Abrahim: AI Integration, Technical Writing
-- Neveen Hassan: BCI Module, Data Acquisition
-- Omar Mansour: FES Module, Circuit Design
-- Omar Elgharbawy: GUI Development, System Integration
-- Sherif Ahmed: Feedback Glove, System Testing
+| Team Members' Names                                  | CV |
+|------------------------------------------------------|:-------:|
+| [Dina Hussam](https://github.com/Dinahussam)         |    1    |
+| [Omar Ahmed ](https://github.com/omaranwar21)        |    2    |
+| [Omar saad ](https://github.com/Omar-Saad-ELGharbawy)|    2    |
+| [Mohamed Ahmed](https://github.com/MohamedAIsmail)   |    2    |
+| [Neveen Mohamed](https://github.com/NeveenMohamed)   |    2    |
 
 ## Acknowledgements
 Supervised by Dr. Aliaa Rehan Youssef, Department of Systems and Biomedical Engineering, Cairo University.
