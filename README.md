@@ -12,6 +12,7 @@
 - [Dataset](#dataset)
 - [Results and Discussion](#results)
 - [Future Work](#future-work)
+- [Technologies](#Technologies)
 - [Team](#team)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
@@ -220,6 +221,12 @@ The system achieved an average prediction accuracy of 79% for real-time predicti
 1. Collect more data to improve model accuracy.
 2. Enhance the FES circuit for better control.
 3. Improve glove sensor sensitivity to reduce delay.
+***
+## Technologies
+<p align="center">
+  <img width="460" height="600" src="https://github.com/user-attachments/assets/076d5e3c-aa75-4b48-a6c8-5fdc81bc811e">
+</p>
+
 ***
 
 ## Team
