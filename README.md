@@ -71,9 +71,9 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
 4. **Graphical User Interface (GUI)**
    - **Control and Monitoring**: Provides an intuitive interface for system control and parameter monitoring.
    - **Reporting**: Gathers and presents performance data and system logs for analysis.
-<img align="right" width="600" height="500"  src="https://github.com/user-attachments/assets/d4ef990e-f213-45e5-bdf6-7b911b15a946" />
-<img width="300" height="250" src="https://github.com/user-attachments/assets/34ef56d9-47b4-41de-8245-2eb38a339f63" alt="image" />
-<img width="300" height="250" src="https://github.com/user-attachments/assets/62f9e5a1-bdbc-4577-9ab6-5f5b366c1679" alt="image" />
+<img align="right" width="600" height="400"  src="https://github.com/user-attachments/assets/d4ef990e-f213-45e5-bdf6-7b911b15a946" />
+<img width="350" height="200" src="https://github.com/user-attachments/assets/34ef56d9-47b4-41de-8245-2eb38a339f63" alt="image" />
+<img width="350" height="200" src="https://github.com/user-attachments/assets/62f9e5a1-bdbc-4577-9ab6-5f5b366c1679" alt="image" />
 
 
 5. **IoT Network**
