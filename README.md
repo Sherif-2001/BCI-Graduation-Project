@@ -121,6 +121,7 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
   <img width="460" height="600" src="https://github.com/user-attachments/assets/dc9232cf-c3d7-47f9-955a-99d948801798">
 </p>
 ***
+
 ## Project Structure
 
 ```
