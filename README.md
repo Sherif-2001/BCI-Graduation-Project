@@ -56,19 +56,25 @@ Hand function impairment, including paralysis or muscle weakness (paresis), ofte
    - **Stimulation Parameters**: Adjustable frequency, intensity, and pulse duration.
    - **Therapy Protocols**: Supports various hand function training patterns.
    - **Safety Features**: Includes isolation transformers, diodes, digital potentiometers, and software protection.
-![FES-Stimulation](https://github.com/user-attachments/assets/e3bde33c-27e2-40ef-ac32-78570f8b6d19)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/user-attachments/assets/e3bde33c-27e2-40ef-ac32-78570f8b6d19">
+</p>
 
 3. **Feedback Glove**
    - **Design**: Comfortable and flexible, equipped with sensors to measure finger angles.
    - **Functionality**: Uses hall effect sensors to detect magnetic field changes during finger movements.
-![glove](https://github.com/user-attachments/assets/f69c7d85-f505-4c2a-af0a-eadcd311519d)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/user-attachments/assets/f69c7d85-f505-4c2a-af0a-eadcd311519d">
+</p>
+
 
 4. **Graphical User Interface (GUI)**
    - **Control and Monitoring**: Provides an intuitive interface for system control and parameter monitoring.
    - **Reporting**: Gathers and presents performance data and system logs for analysis.
-![Patients](https://github.com/user-attachments/assets/62f9e5a1-bdbc-4577-9ab6-5f5b366c1679)
-![Monitor 2](https://github.com/user-attachments/assets/34ef56d9-47b4-41de-8245-2eb38a339f63)
-![Login](https://github.com/user-attachments/assets/d4ef990e-f213-45e5-bdf6-7b911b15a946)
+<img align="right" src="https://github.com/user-attachments/assets/d4ef990e-f213-45e5-bdf6-7b911b15a946" />
+<img src="https://github.com/user-attachments/assets/34ef56d9-47b4-41de-8245-2eb38a339f63" alt="image" />
+<img src="https://github.com/user-attachments/assets/62f9e5a1-bdbc-4577-9ab6-5f5b366c1679" alt="image" />
+
 
 5. **IoT Network**
    - **Integration and Communication Flow**: Ensures coordinated interaction between the Master CPU (Decision Module), FES MC (Action Module), and Glove MC (Feedback Module).
